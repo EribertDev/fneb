@@ -1,0 +1,157 @@
+/*** Css A propos  ***/
+.purecounter {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.purecounter.visible {
+    opacity: 1;
+}
+
+
+/*** Css Acualités ***/
+
+.news-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.15)!important;
+}
+
+.news-gallery {
+    height: 250px;
+    overflow: hidden;
+}
+
+.news-gallery img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-gallery:hover img {
+    transform: scale(1.05);
+}
+
+.photo-count {
+    font-size: 0.8rem;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0,0,0,0.5)!important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8%;
+}
+
+.social-share {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.news-card:hover .social-share {
+    opacity: 1;
+}
+
+.card-title {
+    min-height: 3rem;
+}
+
+/*** Css Autre  ***/
+.form-check-input:checked {
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+.chart-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#otherInput {
+    transition: opacity 0.3s ease;
+}
+
+
+
+/*** Css Blog  ***/
+.blog-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.featured {
+    min-height: 300px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.blog-sidebar .card {
+    border-radius: 1rem;
+}
+
+.nav-pills .nav-link {
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background: var(--bs-primary);
+    color: white !important;
+}
+
+.social-share {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.blog-card:hover .social-share {
+    opacity: 1;
+}
+
+/*** Css Evenement  ***/
+
+.fc-daygrid-day:hover {
+    background: #f8f9fa !important;
+    cursor: pointer;
+}
+
+.event-badge {
+    background: #008751;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+#dailyEvents .list-group-item {
+    border-left: 3px solid #008751;
+    margin-bottom: 8px;
+    transition: transform 0.2s;
+}
+
+#dailyEvents .list-group-item:hover {
+    transform: translateX(5px);
+}
+
+.event-title {
+   
+    padding: 2px 0;
+}
+
+
+
