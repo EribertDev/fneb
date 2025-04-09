@@ -17,6 +17,8 @@
     <meta property="wa:bold" content="true">
      <!-- Favicon -->
      <link href="img/favicon.ico" rel="icon">
+     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">  <!-- Pour afficher l'alerte avant suppression d'un sondage-->
+
 
      <!-- Google Web Fonts -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +28,8 @@
      <!-- Icon Font Stylesheet -->
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+
  
      <!-- Libraries Stylesheet -->
      <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
@@ -59,6 +63,7 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js" defer></script>
     <script src="{{asset('lib/wow/wow.min.js')}}"></script>
     <script src="{{asset('lib/easing/easing.min.js')}}"></script>

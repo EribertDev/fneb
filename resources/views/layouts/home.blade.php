@@ -47,7 +47,7 @@
                                     <a href="/presentation" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                                         <i class="fas fa-university me-2"></i>Qui sommes-nous ?
                                     </a>
-                                    <a href="/inscription" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
+                                    <a href= {{ route('register') }} class="btn btn-light py-md-3 px-md-5 animated slideInRight">
                                         <i class="fas fa-user-plus me-2"></i>Inscrivez-vous
                                     </a>
                                 </div>
@@ -308,7 +308,7 @@
                             <h3 class="card-title h5">Réforme du système universitaire</h3>
                             <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="{{route('actualités-détail')}}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                                <a href="" class="btn btn-outline-primary btn-sm">Lire la suite</a>
                                 <div class="social-share">
                                     <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
                                     <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>
@@ -331,7 +331,7 @@
                                 <h3 class="card-title h5">Réforme du système universitaire</h3>
                                 <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{route('actualités-détail')}}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                                    <a href="" class="btn btn-outline-primary btn-sm">Lire la suite</a>
                                     <div class="social-share">
                                         <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
                                         <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>

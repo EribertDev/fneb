@@ -79,41 +79,23 @@
         <h2 class="text-center mb-5">Actualités de la FNEB</h2>
         
         <div class="row g-4" data-masonry='{"percentPosition": true}'>
-            <!-- Article 1 -->
+            @foreach($news as $actualite)
             <div class="col-md-6 col-lg-4">
                 <article class="news-card card h-100 shadow-lg border-0">
-                    <!-- Galerie Photo -->
-                    <div class="news-gallery position-relative">
-                        <div id="gallery1" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner rounded-top">
-                                <div class="carousel-item active">
-                                    <img src="img\cat-2.jpg" class="d-block w-100" alt="Événement 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img\cat-3.jpg" class="d-block w-100" alt="Événement 1">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#gallery1" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#gallery1" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                        <span class="badge bg-primary position-absolute top-0 start-0 m-3">Éducation</span>
-                        <span class="photo-count position-absolute bottom-0 end-0 m-2 bg-dark text-white px-2 rounded">2 photos</span>
-                    </div>
-
-                    <!-- Contenu -->
+                    
+                    <img src="{{ Storage::url($actualite->image) }}" class="card-img-top" alt="{{ $actualite->title }}"
+                    style="height: 250px; object-fit: cover;">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <small class="text-muted">15 Mars 2024</small>
-                            <small class="text-primary"><i class="fas fa-eye me-1"></i>256 vues</small>
+                            <small class="text-muted">{{ $actualite->created_at->translatedFormat('d M Y') }}</small>
+                            <small class="text-primary">
+                                <i class="fas fa-eye me-1"></i>{{ $actualite->views ?? 0 }}
+                            </small>
                         </div>
-                        <h3 class="card-title h5">Réforme du système universitaire</h3>
-                        <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
+                        <h3 class="card-title h5">{{ $actualite->titre }}</h3>
+                        <p class="card-text">{{ Str::limit($actualite->subtitre, 100) }}</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{route('actualités-détail')}}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                            <a href="{{ route('actualites.show', $actualite->id) }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
                             <div class="social-share">
                                 <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
                                 <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>
@@ -122,41 +104,16 @@
                     </div>
                 </article>
             </div>
-
-            <!-- Article 2 - Format différent -->
-            <div class="col-md-6 col-lg-4">
-                <article class="news-card card h-100 shadow-lg border-0">
-                    <img src="img\cat-2.jpg" class="card-img-top" alt="Événement 2">
-                    <div class="card-body">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted">15 Mars 2024</small>
-                                <small class="text-primary"><i class="fas fa-eye me-1"></i>256 vues</small>
-                            </div>
-                            <h3 class="card-title h5">Réforme du système universitaire</h3>
-                            <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="{{route('actualités-détail')}}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                                <div class="social-share">
-                                    <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
-                                    <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+            @endforeach
         </div>
-
+        
         <!-- Pagination -->
         <nav class="mt-5">
-            <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
-            </ul>
+            <div class="d-flex justify-content-center">
+                {{ $news->links() }}
+            </div>
         </nav>
+        
     </div>
 </section>
 

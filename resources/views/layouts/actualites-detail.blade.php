@@ -56,7 +56,7 @@
                         <ol class="breadcrumb   justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="">Acceuil</a></li> 
                             <li class="breadcrumb
-                            -item text-white active" aria-current="page" href="{{route('news')}}">Actualités</li>
+                            -item text-white active" aria-current="page" href="{{route('actualites')}}">Actualités</li>
                         </ol>
                     </nav>
                 </div>
@@ -80,19 +80,24 @@
         <header class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <span class="badge bg-primary">Éducation</span>
-                    <span class="badge bg-warning text-dark ms-2">En cours</span>
+                    {{-- Affichage dynamique des catégories (ou badges) --}}
+                  
+                    {{-- Statut de l'actualité --}}
+                    @if($news->status == 'published')
+                        <span class="badge bg-warning text-dark ms-2">Publié</span>
+                    @else
+                        <span class="badge bg-warning text-dark ms-2">{{ ucfirst($news->status) }}</span>
+                    @endif
                 </div>
-                <small class="text-muted">Publié le 15/03/2024</small>
+                <small class="text-muted">Publié le {{ $news->created_at->format('d/m/Y') }}</small>
             </div>
-            <h1 class="display-5 fw-bold">Réforme historique du système universitaire béninois</h1>
+            <h1 class="display-5 fw-bold">{{ $news->titre }}</h1>
             <div class="d-flex gap-4 mt-3 text-muted">
-                <small><i class="fas fa-user-edit me-1"></i>Par Koffi Adéwalé</small>
-                <small><i class="fas fa-eye me-1"></i>1 245 vues</small>
+                
+                <small><i class="fas fa-eye me-1"></i>{{ $news->views }} vues</small>
             </div>
         </header>
-
-        <!-- Contenu principal -->
+    
         <div class="row g-5">
             <!-- Galerie média -->
             <div class="col-lg-7">
@@ -100,15 +105,12 @@
                     <!-- Carousel principal -->
                     <div id="mainCarousel" class="carousel slide shadow-lg" data-bs-ride="carousel">
                         <div class="carousel-inner rounded-3">
-                            <div class="carousel-item active">
-                                <img src="img\cat-2.jpg" class="d-block w-100" alt="Réunion des délégués">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p>Assemblée générale des représentants étudiants</p>
-                                </div>
+                           
+                            <div class="carousel-item  active ">
+                                <img src="{{ Storage::url($news->image) }}" class="d-block w-100" alt="{{ $image->alt ?? $news->titre }}">
+                             
                             </div>
-                            <div class="carousel-item">
-                                <img src="img\cat-3.jpg" class="d-block w-100" alt="Discussions">
-                            </div>
+                          
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -117,46 +119,40 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </button>
                     </div>
-
+    
                     <!-- Vignettes -->
                     <div class="thumbnails mt-3">
                         <div class="row g-2">
-                            <div class="col-3" data-bs-target="#mainCarousel" data-bs-slide-to="0">
-                                <img src="img\cat-2.jpg" class="img-fluid rounded cursor-pointer active" alt="Miniature 1">
+                           
+                            <div class="col-3" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="thumbnail-item">
+                                <img src="{{ Storage::url($news->image) }}" class="img-fluid rounded cursor-pointer  active " alt="">
                             </div>
-                            <div class="col-3" data-bs-target="#mainCarousel" data-bs-slide-to="1">
-                                <img src="img\cat-3.jpg" class="img-fluid rounded cursor-pointer" alt="Miniature 2">
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-
+    
             <!-- Corps de l'article -->
             <div class="col-lg-5">
                 <article class="article-content">
                     <div class="lead mb-4">
-                        La FNEB a obtenu gain de cause après 6 mois de négociations intensives avec le ministère...
+                        {{ $news->excerpt ?? strip_tags($news->subtitre) }}
                     </div>
-
+    
                     <!-- Points clés -->
+                    @if($news->keyPoints && count($news->keyPoints) > 0)
                     <div class="key-points bg-primary text-white p-4 rounded-3 mb-4">
-                        <h3 class="h5 mb-3"><i class="fas fa-star me-2"></i>Les avancées majeures</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">✔️ Augmentation de 30% des bourses</li>
-                            <li class="mb-2">✔️ Création de 5 nouvelles bibliothèques</li>
-                            <li class="mb-2">✔️ Programme de transport subventionné</li>
-                        </ul>
+                      
+                      
                     </div>
-
+                    @endif
+    
                     <!-- Contenu détaillé -->
                     <div class="content-body">
-                        <p>Après plusieurs mois de mobilisation intensive, les représentants de la FNEB...</p>
-                        
-                        <h3 class="h4 mt-4">Prochaines étapes</h3>
-                        <p>La mise en œuvre progressive des mesures débutera dès le 1er avril 2024...</p>
+                        {!! $news->contenu !!}
                     </div>
-
+    
                     <!-- Partage social -->
                     <div class="social-sharing mt-5 pt-4 border-top">
                         <h4 class="h6 text-muted mb-3">Partager cet article :</h4>
@@ -175,24 +171,27 @@
                 </article>
             </div>
         </div>
-
+    
         <!-- Articles connexes -->
+        @if($relatedNews->count() > 0)
         <section class="related-articles mt-5 pt-5">
             <h2 class="h4 mb-4">D'autres actualités qui pourraient vous intéresser</h2>
             <div class="row g-4">
+                @foreach($relatedNews as $related)
                 <div class="col-md-4">
                     <div class="card h-100">
-                        <img src="related1.jpg" class="card-img-top" alt="...">
+                        <img src="{{ Storage::url($related->image) }}" class="card-img-top" alt="{{ $related->titre }}">
                         <div class="card-body">
-                            <h5 class="card-title">Nouveau programme de bourses</h5>
-                            <p class="card-text">Découvrez les critères d'éligibilité...</p>
-                            <a href="#" class="btn btn-link">Lire →</a>
+                            <h5 class="card-title">{{ $related->titre }}</h5>
+                            <p class="card-text">{{ Str::limit($related->excerpt ?? strip_tags($related->contenu), 100) }}</p>
+                            <a href="{{ route('actualites.detail', $related->id) }}" class="btn btn-link">Lire →</a>
                         </div>
                     </div>
                 </div>
-                <!-- Ajouter d'autres articles -->
+                @endforeach
             </div>
         </section>
+        @endif
     </div>
 </section>
 @endsection

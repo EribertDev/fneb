@@ -86,36 +86,72 @@
 
             <!-- Formulaire -->
             <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                <form id="contactForm">
+                @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                <form   id="contactForm" method="POST" action="{{route('contact.submit')}}">
+                    @csrf
                     <div class="row g-3">
+                        
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="nom" placeholder="Votre nom" required>
+                                <input type="text" 
+                                class="form-control " 
+                                id="name" 
+                                name="name"
+                                placeholder="Votre nom"
+                                required>
                                 <label for="nom">Votre nom complet</label>
+                                @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+                            
+                                <input type="email" 
+                                class="form-control " 
+                                id="email" 
+                                name="email"
+                                placeholder="name@example.com"
+                                required>
                                 <label for="email">Adresse email</label>
+                                @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <select class="form-select" id="sujet">
-                                    <option value="general">Question générale</option>
-                                    <option value="bourse">Demande de bourse</option>
-                                    <option value="urgence">Urgence étudiante</option>
-                                    <option value="partenariat">Partenariat</option>
-                                </select>
-                                <label for="sujet">Nature de votre demande</label>
+                                <input type="text" 
+                                class="form-control " 
+                                id="subject" 
+                                name="subject"
+                                placeholder="Sujet"
+                                required>
+                         <label for="subject" class="text-muted">
+                             <i class="fas fa-tag me-2 text-danger"></i>Sujet du message
+                         </label>
+                         @error('subject')
+                             <div class="invalid-feedback">{{ $message }}</div>
+                         @enderror
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Laissez votre message ici" 
-                                id="message" style="height: 150px" required></textarea>
-                                <label for="message">Détails de votre demande</label>
+                                <textarea class="form-control " 
+                                id="message" 
+                                name="message"
+                                placeholder="Votre message"
+                                style="height: 150px"
+                                required></textarea>
+                            <label for="message" class="text-muted">
+                                <i class="fas fa-comment-dots me-2 text-danger"></i>Votre message
+                            </label>
+                            @error('message')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <div class="col-12">
