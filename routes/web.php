@@ -12,8 +12,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
-
-
+use App\Http\Controllers\HomeController;
 
 // Route pour le dashboard admin
 Route::middleware(['auth'])->group(function () {
@@ -25,9 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 });
 
-Route::get('/', function () {
-    return view('layouts.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // Route A propos

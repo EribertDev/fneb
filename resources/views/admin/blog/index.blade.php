@@ -181,7 +181,7 @@
 
 @section('content')
 
-<<div class="posts-container">
+<div class="posts-container">
     <div class="posts-header">
         <h1>Gestion des Articles</h1>
         <a href="{{ route('admin.posts.create') }}" class="btn-primary">

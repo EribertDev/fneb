@@ -7,61 +7,61 @@
 <style>
 
     .option-card {
-            cursor: pointer;
-            border: 2px solid #dee2e6;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        cursor: pointer;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
     
-        .option-card:hover:not(.active-option) {
-            transform: translateY(-3px);
-            border-color:  #1A3D7C;
-            box-shadow: 0 4px 15px rgba(63, 38, 204, 0.1);
-        }
-    
-        .active-option {
-            border-color:  #4D8EFF !important;
-            background: rgba(212, 175, 55, 0.05);
-            transform: translateY(-3px);
-        }
-    
-        .form-check-input {
-            width: 1.3em;
-            height: 1.3em;
-            margin-top: 0;
-        }
-    
-        .form-check-input:checked {
-            background-color: #4D8EFF;
-            border-color:  #4D8EFF;
-        }
-    
-        .check-icon {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-        }
-    
-        .active-option .check-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .text-gold-200 {
-            color: rgba(55, 65, 212, 0.8);
-        }
+    .option-card:hover:not(.active-option) {
+        transform: translateY(-3px);
+        border-color:  #1A3D7C;
+        box-shadow: 0 4px 15px rgba(63, 38, 204, 0.1);
+    }
+
+    .active-option {
+        border-color:  #4D8EFF !important;
+        background: rgba(212, 175, 55, 0.05);
+        transform: translateY(-3px);
+    }
+
+    .form-check-input {
+        width: 1.3em;
+        height: 1.3em;
+        margin-top: 0;
+    }
+
+    .form-check-input:checked {
+        background-color: #4D8EFF;
+        border-color:  #4D8EFF;
+    }
+
+    .check-icon {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+    }
+
+    .active-option .check-icon {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .text-gold-200 {
+        color: rgba(55, 65, 212, 0.8);
+    }
         
-        @keyframes pulse-gold {
-            0% { box-shadow: 0 0 0 0 rgba(114, 194, 240, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(97, 30, 184, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(5, 14, 153, 0); }
-        }
-        
-        .voted-badge {
-            animation: pulse-gold 2s infinite;
-        }
+    @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(114, 194, 240, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(97, 30, 184, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(5, 14, 153, 0); }
+    }
+    
+    .voted-badge {
+        animation: pulse-gold 2s infinite;
+    }
 
 
-        :root {
+    :root {
         --fneb-blue: #1A3D7C;
         --fneb-light-blue: #4D8EFF;
     }
@@ -112,12 +112,12 @@
     </div>
     <!-- Header End -->
 
-        <!-- En-tête FNEB -->
-        <div class="text-center mb-5">
-            <img src="{{asset('img/fneb-logo.png')}}" alt="FNEB Logo" class="mb-3" style="height: 80px;">
-            <h1 class="display-5 fw-bold text-primary">Sondages Étudiants</h1>
-            <p class="lead">Votre voix compte pour la communauté étudiante !</p>
-        </div>
+    <!-- En-tête FNEB -->
+    <div class="text-center mb-5">
+        <img src="{{asset('img/fneb-logo.png')}}" alt="FNEB Logo" class="mb-3" style="height: 80px;">
+        <h1 class="display-5 fw-bold text-primary">Sondages Étudiants</h1>
+        <p class="lead">Votre voix compte pour la communauté étudiante !</p>
+    </div>
     
        <!-- Liste des sondages -->
 <div class="container mx-auto px-4 py-8">

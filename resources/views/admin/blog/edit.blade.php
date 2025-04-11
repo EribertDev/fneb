@@ -142,7 +142,7 @@
 
 @section('content')
 
-<<div class="form-container">
+<div class="form-container">
     <h2>{{ isset($post) ? 'Modifier l\'article' : 'Nouvel Article' }}</h2>
 
     <form class="post-form" method="POST" 
