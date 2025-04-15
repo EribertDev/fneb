@@ -12,12 +12,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MemberController;
-
-
-
+use App\Http\Controllers\HomeController;
 
 // Route pour le dashboard admin
 Route::middleware(['auth'])->group(function () {
@@ -29,20 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 });
 
-Route::get('/', function () {
-    return view('layouts.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/profile', function () {
-    return view('layouts.profile');
-})->name('profile');
-
-Route::middleware('auth')->group(function() {
-   // Route::get('/profile', [ProfileController::class,'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class,'update'])->name('profile.update');
-    Route::put('/profile/avatar', [ProfileController::class,'updateAvatar'])->name('profile.avatar');
-    Route::put('/profile/password', [ProfileController::class,'updatePassword'])->name('password.update');
-});
 
 // Route A propos
 Route::get('/about',function (){

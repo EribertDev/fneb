@@ -104,7 +104,7 @@
                                     <input class="form-check-input" type="checkbox" 
                                            name="is_public" id="is_public" 
                                            {{ old('is_public', $poll->is_public ?? true) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="is_public">
+                                    <label class="form-check-label ms-3" for="is_public">
                                         Sondage public
                                     </label>
                                 </div>

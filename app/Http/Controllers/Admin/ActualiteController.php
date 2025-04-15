@@ -30,11 +30,9 @@ class ActualiteController extends Controller
             'titre' => 'required|max:255',
             'subtitre' => 'nullable|max:255',
             'contenu' => 'required',
-             'status' => 'required|in:draft,published,archived',
+            'status' => 'required|in:draft,published,archived',
             'type' => 'required|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-           
-          
         ]);
 
         if ($request->hasFile('image')) {

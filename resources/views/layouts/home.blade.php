@@ -2,8 +2,209 @@
 @section('title •','Accueil ')
 @section('description', 'Description FNEB')
 @section('extra-style')
-<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    .badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 5px 15px;
+        border-radius: 20px;   
+        font-size: 0.9rem;
+    }
+    .badgee {
+        position: absolute;
+        top: 15px;
+        right: 1px;
+        padding: 5px 15px;
+        border-radius: 20px;
+    
+        font-size: 0.9rem;
+    }
+    .event-card {
+        border-radius: 1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+    }
+
+    .bg-gradient {
+        background: linear-gradient(135deg, var(--fneb-primary) 0%, var(--fneb-secondary) 100%);
+    }
+
+    .bg-primary-transparent {
+        background-color: rgba(37, 99, 235, 0.1);
+    }
+
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    .btn-primary-gradient {
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    }
+
+    :root {
+        --fneb-primary: #2563eb;
+        --fneb-secondary: #1e40af;
+        --fneb-blue: #1A3D7C;
+        --fneb-light-blue: #4D8EFF;
+    }
+
+    /*Blog*/
+    .blog-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+    }
+    
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    }
+    
+    .featured {
+        min-height: 300px;
+    }
+    
+    .avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .blog-sidebar .card {
+        border-radius: 1rem;
+    }
+    
+    .nav-pills .nav-link {
+        transition: all 0.3s ease;
+    }
+    
+    .nav-pills .nav-link.active {
+        background: var(--bs-primary);
+        color: white !important;
+    }
+
+    .social-share {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .blog-card:hover .social-share {
+        opacity: 1;
+    }
+
+    .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .avatar {
+    
+        object-fit: cover;
+    }
+
+    .featured {
+        border: 2px solid #1A3D7C;
+    }
+
+    .pagination .page-link {
+        color: #1A3D7C;
+    }
+
+    .pagination .page-item.active .page-link {
+        background: #1A3D7C;
+        border-color: #1A3D7C;
+    }
+
+    /*Sondage*/
+    .option-card {
+        cursor: pointer;
+        border: 2px solid #dee2e6;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .option-card:hover:not(.active-option) {
+        transform: translateY(-3px);
+        border-color:  #1A3D7C;
+        box-shadow: 0 4px 15px rgba(63, 38, 204, 0.1);
+    }
+
+    .active-option {
+        border-color:  #4D8EFF !important;
+        background: rgba(212, 175, 55, 0.05);
+        transform: translateY(-3px);
+    }
+
+    .form-check-input {
+        width: 1.3em;
+        height: 1.3em;
+        margin-top: 0;
+    }
+
+    .form-check-input:checked {
+        background-color: #4D8EFF;
+        border-color:  #4D8EFF;
+    }
+
+    .check-icon {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+    }
+
+    .active-option .check-icon {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .text-gold-200 {
+        color: rgba(55, 65, 212, 0.8);
+    }
+        
+    @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(114, 194, 240, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(97, 30, 184, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(5, 14, 153, 0); }
+    }
+    
+    .voted-badge {
+        animation: pulse-gold 2s infinite;
+    }
+    .bg-fneb {
+        background: linear-gradient(90deg, var(--fneb-blue), var(--fneb-light-blue));
+    }
+
+    .progress {
+        border-radius: 15px;
+        overflow: hidden;
+        background-color: #f0f4f9;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .progress-bar {
+        position: relative;
+        transition: width 0.5s ease-in-out;
+    }
+
+    .progress-text {
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        color: white;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+</style>
 @endsection
 @section('content')
     <!-- Carousel Start -->
@@ -52,8 +253,6 @@
                                     </a>
                                 </div>
                             </div>
-
-                            
                         </div>
                     </div>
                 </div>
@@ -144,37 +343,6 @@
     <!-- Service End -->
 
 
-   <div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
-            <div class="achievements-section bg-dark text-white py-5">
-                <div class="row text-center">
-                    <div class="col-md-3">
-                        <h3 class="text-warning purecounter" data-purecounter-start="0" data-purecounter-end="150"   data-purecounter-separator="true"
-                        data-purecounter-separator-symbol=" " data-duration="100">15k+</h3>
-                        <p class="lead">Étudiants membres</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h3 class="text-warning purecounter" data-purecounter-start="0" data-purecounter-end="78"   data-purecounter-separator="true"
-                        data-purecounter-separator-symbol=" ">78</h3>
-                        <p class="lead">Succès des campagnes</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h3 class="text-warning purecounter" data-purecounter-start="0" data-purecounter-end="120"   data-purecounter-separator="true"
-                        data-purecounter-separator-symbol=" ">120</h3>
-                        <p class="lead">Partenariats</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h3 class="text-warning purecounter" data-purecounter-start="0" data-purecounter-end="25"   data-purecounter-separator="true"
-                        data-purecounter-separator-symbol=" ">25</h3>
-                        <p class="lead">Ans d'engagement</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   </div>
-
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
@@ -182,7 +350,7 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">👥Le Bureau Exécutif National</h6>
                 
-                <h1 class="mb-5">Menbres</h1>
+                <h1 class="mb-5">Membres</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -274,41 +442,23 @@
             <h2 class="text-center mb-5">Actualités de la FNEB</h2>
             
             <div class="row g-4" data-masonry='{"percentPosition": true}'>
-                <!-- Article 1 -->
+                @foreach($latestActualites as $actualite)
                 <div class="col-md-6 col-lg-4">
                     <article class="news-card card h-100 shadow-lg border-0">
-                        <!-- Galerie Photo -->
-                        <div class="news-gallery position-relative">
-                            <div id="gallery1" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner rounded-top">
-                                    <div class="carousel-item active">
-                                        <img src="img\cat-2.jpg" class="d-block w-100" alt="Événement 1">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="img\cat-3.jpg" class="d-block w-100" alt="Événement 1">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#gallery1" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#gallery1" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <span class="badge bg-primary position-absolute top-0 start-0 m-3">Éducation</span>
-                            <span class="photo-count position-absolute bottom-0 end-0 m-2 bg-dark text-white px-2 rounded">2 photos</span>
-                        </div>
-    
-                        <!-- Contenu -->
+                        
+                        <img src="{{ Storage::url($actualite->image) }}" class="card-img-top" alt="{{ $actualite->title }}"
+                        style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <small class="text-muted">15 Mars 2024</small>
-                                <small class="text-primary"><i class="fas fa-eye me-1"></i>256 vues</small>
+                                <small class="text-muted">{{ $actualite->created_at->translatedFormat('d M Y') }}</small>
+                                <small class="text-primary">
+                                    <i class="fas fa-eye me-1"></i>{{ $actualite->views ?? 0 }}
+                                </small>
                             </div>
-                            <h3 class="card-title h5">Réforme du système universitaire</h3>
-                            <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
+                            <h3 class="card-title h5">{{ $actualite->titre }}</h3>
+                            <p class="card-text">{{ Str::limit($actualite->subtitre, 100) }}</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                                <a href="{{ route('actualites.show', $actualite->id) }}" class="btn btn-outline-primary btn-sm">Lire la suite</a>
                                 <div class="social-share">
                                     <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
                                     <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>
@@ -317,49 +467,94 @@
                         </div>
                     </article>
                 </div>
-    
-                <!-- Article 2 - Format différent -->
-                <div class="col-md-6 col-lg-4">
-                    <article class="news-card card h-100 shadow-lg border-0">
-                        <img src="img\cat-2.jpg" class="card-img-top" alt="Événement 2">
-                        <div class="card-body">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <small class="text-muted">15 Mars 2024</small>
-                                    <small class="text-primary"><i class="fas fa-eye me-1"></i>256 vues</small>
-                                </div>
-                                <h3 class="card-title h5">Réforme du système universitaire</h3>
-                                <p class="card-text">La FNEB plaide pour une éducation plus accessible à tous les étudiants...</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="" class="btn btn-outline-primary btn-sm">Lire la suite</a>
-                                    <div class="social-share">
-                                        <button class="btn btn-link text-muted"><i class="fab fa-facebook"></i></button>
-                                        <button class="btn btn-link text-muted"><i class="fab fa-twitter"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                @endforeach
             </div>
-    
+            
             <!-- Pagination -->
             <nav class="mt-5">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                </ul>
+                <div class="d-flex justify-content-center">
+                    {{ $latestActualites->links() }}
+                </div>
             </nav>
         </div>
     </section>
+    <!-- Actualités End -->    
     
           
-    <!-- Actualités End -->    
 
 
-   
+    <!-- Events Start -->
+    <div class="container px-4 py-5" style="background: #f8fafc;">
+        <h2 class="text-center mb-5">Evènements de la FNEB</h2>
+        <!-- Filtres -->
+        <div class="row mb-4 g-3">
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <button class="btn btn-outline-primary rounded-pill">Tous</button>
+                    <button class="btn btn-outline-primary rounded-pill">Conférences</button>
+                    <button class="btn btn-outline-primary rounded-pill">Ateliers</button>
+                    <button class="btn btn-outline-primary rounded-pill">Manifestations</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Liste des événements -->
+        <div class="row g-4 container">
+            @foreach($latestEvenements as $evenement)
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="event-card card border-0 shadow-sm h-100 overflow-hidden transition-all">
+                    <!-- Image -->
+                    <div class="event-image position-relative" style="height: 250px;">
+                        <img src="{{ asset('storage/' . $evenement->image) }}" 
+                             class="img-fluid w-100 h-100 object-fit-cover"
+                             alt="{{ $evenement->titre }}">
+                        
+                        <!-- Badge Statut -->
+                        <div class="">
+                            <span class="badgee rounded-pill bg-gradient 
+                                @if($evenement->statut === 'a_venir') bg-warning
+                                @elseif($evenement->statut === 'termine') bg-success
+                                @else bg-danger @endif">
+                                {{ ucfirst($evenement->statut) }}
+                            </span>
+                        </div>
+                    </div>
+    
+                    <!-- Contenu -->
+                    <div class="card-body">
+                        <!-- Type -->
+                        <span class="badge rounded-pill bg-primary-transparent text-primary mb-2 ">
+                            {{ $evenement->type }}
+                        </span>
+                        
+                        <h3 class="h5 fw-bold mb-3">{{ $evenement->titre }}</h3>
+                        
+                        <!-- Métadonnées -->
+                        <div class="d-flex flex-column gap-2 text-muted">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-calendar-day text-primary"></i>
+                                {{ $evenement->date_heure->format('d M Y - H:i') }}
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                {{ $evenement->lieu }}
+                            </div>
+                        </div>
+    
+                        <!-- Bouton Détails -->
+                        <div class="mt-4">
+                            <a href="{{ route('evenements.show', $evenement->id) }}" 
+                               class="btn btn-primary-gradient w-100 rounded-pill py-2 fw-bold">
+                                Voir détails <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    
+    <!-- Events End -->
 
      <!-- BLOG Start -->
      <section class="student-blog py-5 bg-light">
@@ -376,11 +571,17 @@
                     </div>
                 </div>
                 <nav class="blog-categories mt-4">
-                    <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#all">Tous</button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#education">Éducation</button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#career">Carrière</button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#campus">Vie Campus</button>
+                    <div class="nav nav-pills justify-content-center">
+                        <a href="{{ route('blog') }}" 
+                           class="nav-link {{ !request('category') ? 'active' : '' }}">
+                            Tous
+                        </a>
+                        @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','technology','autre'] as $category)
+                        <a href="?category={{ $category }}" 
+                           class="nav-link {{ request('category') === $category ? 'active' : '' }}">
+                            {{ ucfirst($category) }}
+                        </a>
+                        @endforeach
                     </div>
                 </nav>
             </div>
@@ -390,73 +591,109 @@
                 <!-- Articles -->
                 <div class="col-lg-8">
                     <div class="row g-4" data-masonry='{"percentPosition": true}'>
-                        <!-- Article vedette -->
-                        <div class="col-12">
-                            <article class="blog-card featured bg-white rounded-3 shadow-lg overflow-hidden">
-                                <div class="row g-0">
-                                    <div class="col-md-6">
-                                        <img src="img\course-1.jpg" class="img-fluid h-100 object-fit-cover" alt="...">
-                                    </div>
-                                    <div class="col-md-6 p-4 d-flex flex-column">
-                                        <div class="mb-2">
-                                            <span class="badge bg-primary">Nouveau</span>
-                                            <span class="badge bg-warning text-dark ms-2">Éducation</span>
+                        @forelse($latestPosts as $post)
+                        @if ($loop->first)
+                            <div class="col-12">
+                                <article class="blog-card featured bg-white rounded-3 shadow-lg overflow-hidden">
+                                    @if($post->image)
+                                    <div class="row g-0">
+                                        <div class="{{ $loop->first ? 'col-md-6' : 'col-12' }}">
+                                            <img src="{{ asset('storage/'.$post->image) }}" 
+                                                class="img-fluid h-100 object-fit-cover" 
+                                                alt="{{ $post->title }}">
                                         </div>
-                                        <h2 class="h3">Comment réussir sa première année universitaire</h2>
-                                        <p class="flex-grow-1">Guide complet avec les conseils des anciens...</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="author-info">
-                                                <img src="img\testimonial-1.jpg" class="avatar rounded-circle" alt="Auteur">
-                                                <span class="ms-2">Alice D.</span>
+                                        <div class="{{ $loop->first ? 'col-md-6' : 'col-12' }} p-4 d-flex flex-column">
+                                            @endif
+                                            
+                                            <div class="mb-2">
+                                                @if($loop->first && $post->created_at->diffInDays() < 7)
+                                                <span class="blog-badge bg-primary px-1 fw-bold">Nouveau</span>
+                                                @endif
+                                                <span class="blog-badge bg-warning text-dark px-1 fw-bold ms-2">
+                                                    {{ ucfirst($post->category) }}
+                                                </span>
                                             </div>
-                                            <a href="#" class="btn btn-outline-primary">Lire →</a>
+                                            <h2 class="{{ $loop->first ? 'h3' : 'h5' }}">{{ $post->title }}</h2>
+                                            <p class="flex-grow-1">{{ Str::limit(strip_tags($post->content), 120) }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="author-info">
+                                                    <img src="{{ $post->editor->profile_picture ? Storage::url($post->editor->profile_picture) : asset('default-avatar.png') }}"
+                                                        class="avatar rounded-circle" 
+                                                        alt="{{ $post->editor->name }}">
+                                                    <span class="ms-2">{{ $post->editor->name }}</span>
+                                                </div>
+                                                <a href="{{route('post.show',$post)}}" class="btn btn-outline-primary">
+                                                    Lire →
+                                                </a>
+                                            </div>
+                                            
+                                            @if($post->image)
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-                        </div>
-    
-                        <!-- Article standard -->
-                        <div class="col-md-6">
-                            <article class="blog-card bg-white rounded-3 shadow-lg">
-                                <div class="position-relative">
-                                    <img src="post1.jpg" class="card-img-top" alt="...">
-                                    <span class="badge bg-dark position-absolute top-0 end-0 m-3">5 min</span>
-                                </div>
-                                <div class="p-3">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <small class="text-muted">15 Mars 2024</small>
-                                        <div class="social-share">
-                                            <button class="btn btn-link text-muted"><i class="fas fa-share-alt"></i></button>
+                                    @endif
+                                </article>
+                            </div>
+                        @else
+                            <div class="col-md-6">
+                                <article class="blog-card bg-white rounded-3 shadow-lg overflow-hidden">
+                                    @if($post->image)
+                                    <div class="row g-0">
+                                        <div class="{{ $loop->first ? 'col-md-6' : 'col-12' }}">
+                                            <img src="{{ asset('storage/'.$post->image) }}" 
+                                                class="img-fluid h-100 object-fit-cover" 
+                                                alt="{{ $post->title }}">
+                                        </div>
+                                        <div class="{{ $loop->first ? 'col-md-6' : 'col-12' }} p-4 d-flex flex-column">
+                                            @endif
+                                            
+                                            <div class="mb-2">
+                                                @if($loop->first && $post->created_at->diffInDays() < 7)
+                                                <span class="blog-badge bg-primary px-1 fw-bold">Nouveau</span>
+                                                @endif
+                                                <span class="blog-badge bg-warning text-dark px-1 fw-bold ms-2">
+                                                    {{ ucfirst($post->category) }}
+                                                </span>
+                                            </div>
+                                            <h2 class="{{ $loop->first ? 'h3' : 'h5' }}">{{ $post->title }}</h2>
+                                            <p class="flex-grow-1">{{ Str::limit(strip_tags($post->content), 120) }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="author-info">
+                                                    <img src="{{ $post->editor->profile_picture ? Storage::url($post->editor->profile_picture) : asset('default-avatar.png') }}"
+                                                        class="avatar rounded-circle" 
+                                                        alt="{{ $post->editor->name }}">
+                                                    <span class="ms-2">{{ $post->editor->name }}</span>
+                                                </div>
+                                                <a href="{{route('post.show',$post)}}" class="btn btn-outline-primary">
+                                                    Lire →
+                                                </a>
+                                            </div>
+                                            
+                                            @if($post->image)
                                         </div>
                                     </div>
-                                    <h3 class="h5">Top 10 des applications pour étudiants</h3>
-                                    <p class="text-muted">Les outils indispensables pour booster sa productivité...</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-comments me-2 text-primary"></i>
-                                            <small>24 commentaires</small>
-                                        </div>
-                                        <a href="#" class="stretched-link"></a>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-    
-                        <!-- Plus d'articles... -->
+                                    @endif
+                                </article>
+                            </div>
+                        @endif
+                        
+                        @empty
+                            <div class="col-12 text-center py-5">
+                                <h3>Aucun article trouvé</h3>
+                                <a href="{{ route('blog') }}" class="btn btn-primary">
+                                    Voir tous les articles
+                                </a>
+                            </div>
+                        @endforelse
                     </div>
-    
+
                     <!-- Pagination -->
+                    @if($latestPosts->hasPages())
                     <nav class="mt-5">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a></li>
-                        </ul>
+                        {{ $latestPosts->appends(request()->query())->links() }}
                     </nav>
+                    @endif
                 </div>
-    
+        
                 <!-- Sidebar -->
                 <div class="col-lg-4">
                     <div class="blog-sidebar sticky-top">
@@ -465,33 +702,39 @@
                             <div class="card-body text-center bg-primary text-white rounded-3">
                                 <i class="fas fa-envelope-open-text fa-3x mb-3"></i>
                                 <h3 class="h5">Abonnez-vous à notre newsletter</h3>
-                                <input type="email" class="form-control mb-2" placeholder="Votre email">
-                                <button class="btn btn-light w-100">S'abonner</button>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <input type="email" name="email" class="form-control mb-2" required placeholder="Votre email">
+                                    <button type="submit" class="btn btn-light w-100">S'abonner</button>
+                                </form>
                             </div>
                         </div>
-    
+
                         <!-- Articles populaires -->
                         <div class="card mb-4 border-0 shadow-sm">
                             <div class="card-body">
                                 <h4 class="h5 mb-3">📌 Articles populaires</h4>
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                        <span class="badge bg-primary me-2">1</span>
-                                        <span>Comment financer ses études</span>
+                                    @foreach($popularPosts as $post)
+                                    <a href="{{route('post.show',$post)}}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                        <span class="blog-badge bg-primary me-2 px-2">{{ $loop->iteration }}</span>
+                                        <span>{{ $post->title }}</span>
                                     </a>
-                                    <!-- Plus d'éléments... -->
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-    
+
                         <!-- Médias sociaux -->
                         <div class="card border-0 shadow-sm">
                             <div class="card-body">
                                 <h4 class="h5 mb-3">💬 Rejoignez la communauté</h4>
                                 <div class="d-flex gap-3 fs-4">
-                                    <a href="#" class="text-primary"><i class="fab fa-facebook"></i></a>
-                                    <a href="#" class="text-info"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" class="text-danger"><i class="fab fa-instagram"></i></a>
+                                    @foreach(config('social_links') as $network => $url)
+                                    <a href="{{ $url }}" class="text-primary" target="_blank">
+                                        <i class="fab fa-{{ $network }}"></i>
+                                    </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -502,34 +745,111 @@
     </section>
     <!-- BLOG End -->
 
-   
+    <!-- Autre Start -->
+    
+    <!-- Liste des sondages -->
+<div class="container mx-auto px-4" style="margin-top: 200px;">
+    <h2 class="text-center mb-5">Sondages Étudiants</h2>
+    @forelse($latestPoll as $poll)
+    <div class="bg-white rounded-xl shadow-2xl mb-8 overflow-hidden transition-all duration-300 hover:shadow-lg">
+        <!-- En-tête du sondage -->
+        <div class="p-6 border-b-2 border-blue-100 bg-gradient-to-r from-[#1A3D7C] to-[#4D8EFF]">
+            <h3 class="text-2xl font-bold text-center mb-3">{{ $poll->question }}</h3>
+            <div class="flex items-center mt-2 text-sm text-blue-100">
+                <span class="mr-4">📅 {{ $poll->end_at ? 'Clôture : '.$poll->end_at->translatedFormat('d M Y H:i') : 'Durée illimitée' }}</span>
+                <span>🗳 {{ $poll->votes_count }} participations</span>
+            </div>
+        </div>
+
+        @if(!$poll->hasVoted(request()->cookie('voted_polls')))
+        <!-- Formulaire de vote -->
+        <form method="POST" action="{{ route('polls.vote', $poll) }}" class="p-6">
+            @csrf
+            <div class="space-y-4 mb-6">
+                <div class="row g-3">
+                    @foreach($poll->options as $option)
+                    <div class="col-12 col-md-6">
+                        <div class="card option-card shadow-sm hover:shadow-md transition-all">
+                            <label class="card-body d-flex align-items-center cursor-pointer m-0">
+                                <div class="form-check me-3">
+                                    <input 
+                                        type="radio" 
+                                        name="option_id" 
+                                        value="{{ $option->id }}" 
+                                        class="form-check-input"
+                                        required>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-0 text-[#1A3D7C]">{{ $option->text }}</h5>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-[#1A3D7C] to-[#4D8EFF] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity btn btn-primary mt-2" style="border-radius: 10px">
+                Valider mon vote 🗳
+            </button>
+        </form>
+        @else
+        <!-- Résultats -->
+        <div class="p-6">
+            <div class="space-y-4">
+                @foreach($poll->options as $option)
+                <div class="relative pt-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-[#1A3D7C] font-medium">{{ $option->text }}</span>
+                        <span class="text-[#4D8EFF] font-bold">{{ $option->percentage }}%</span>
+                    </div>
+                    <!-- Barre de progression -->
+                    <div class="progress flex-grow-1" style="height: 40px;">
+                        <div class="progress-bar bg-fneb" 
+                            role="progressbar" 
+                            style="width: {{ $option->percentage }}%" 
+                            aria-valuenow="{{ $option->percentage }}" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100">
+                            <span class="progress-text">{{ $option->percentage }}%</span>
+                        </div>
+                    </div>
+                    <div class="text-right text-sm text-gray-600 mt-1">
+                        {{ $option->votes_count }} votes
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="mt-6 text-center text-[#1A3D7C] font-semibold">
+                ✅ Merci pour votre participation !
+            </div>
+        </div>
+        @endif
+    </div>
+    @empty
+    <div class="text-center py-12">
+        <div class="text-2xl text-[#1A3D7C] mb-4">📢 Aucun sondage en cours</div>
+        <p class="text-[#4D8EFF]">Revenez prochainement pour donner votre avis !</p>
+    </div>
+    @endforelse
+</div>
+</div>
+      
+    <!-- Autre End -->
 @endsection
-
-
    
-
-  
-
-  
-
-
-  
-
-
-   
-    @section('extra-script')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            new PureCounter({
-                // Configuration personnalisée
-                selector: '.purecounter',
-                duration: 5,
-                delay: 5,
-                once: true,
-                legacy: false
-            });
+@section('extra-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new PureCounter({
+            // Configuration personnalisée
+            selector: '.purecounter',
+            duration: 5,
+            delay: 5,
+            once: true,
+            legacy: false
         });
-        </script>
+    });
+</script>
 
 
 
@@ -660,4 +980,6 @@ if (dailyEvents.length === 0) {
     updateDailyEvents(new Date());
 });
 </script>
-    @endsection
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js" defer></script>
+@endsection
