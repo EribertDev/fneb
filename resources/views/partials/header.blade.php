@@ -32,8 +32,8 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                 <li>
-                    <button style="width: 90%; margin: auto; border-radius: 10px; transition: ease-in-out 0.2s;" class="dropdown-item" onmouseover="this.style.backgroundColor='var(--primary)';" onmouseout="this.style.backgroundColor='transparent';" data-bs-toggle="modal" data-bs-target="#profileModal">
-                        <i class="fas fa-user-circle me-1"></i> Mon profil
+                    <button style="width: 90%; margin: auto; border-radius: 10px; transition: ease-in-out 0.2s;" class="dropdown-item" onmouseover="this.style.backgroundColor='var(--primary)';" onmouseout="this.style.backgroundColor='transparent';" >
+                        <a href="{{route('profile')}}"><i class="fas fa-user-circle me-1"></i> Mon profil</a>
                     </button>
                 </li>
                 <li><hr class="dropdown-divider"></li>

@@ -122,7 +122,7 @@
                        class="nav-link {{ !request('category') ? 'active' : '' }}">
                         Tous
                     </a>
-                    @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','technology','autre'] as $category)
+                    @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','transport','restauration','autre'] as $category)
                     <a href="?category={{ $category }}" 
                        class="nav-link {{ request('category') === $category ? 'active' : '' }}">
                         {{ ucfirst($category) }}
@@ -200,14 +200,22 @@
             <div class="col-lg-4">
                 <div class="blog-sidebar sticky-top">
                     <!-- Newsletter -->
+                    @if(session('newsletter_success'))
+                        <div class="alert alert-success mb-3">
+                            {{ session('newsletter_success') }}
+                        </div>
+                    @endif
                     <div class="card mb-4 border-0 shadow-sm">
                         <div class="card-body text-center bg-primary text-white rounded-3">
                             <i class="fas fa-envelope-open-text fa-3x mb-3"></i>
                             <h3 class="h5">Abonnez-vous à notre newsletter</h3>
-                            <form action="" method="POST">
+                            <form action="{{ route('newsletter.subscribe') }}" method="POST">
                                 @csrf
-                                <input type="email" name="email" class="form-control mb-2" required placeholder="Votre email">
+                                <input type="email" name="email" class=" mb-2 form-control @error('email') is-invalid @enderror"  required placeholder="Votre email">
                                 <button type="submit" class="btn btn-light w-100">S'abonner</button>
+                                    @error('email')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                             </form>
                         </div>
                     </div>

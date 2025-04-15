@@ -90,7 +90,7 @@ return view('layouts.blog', compact('posts', 'popularPosts'));
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category' => 'required|in:sante,academique,emploi,culture,logement,evenements,technology,autre',
+            'category' => 'required|in:sante,academique,emploi,culture,logement,evenements,transport,restauration,autre',
             'image' => 'nullable|image',
         ]);
         $config = HTMLPurifier_Config::createDefault();

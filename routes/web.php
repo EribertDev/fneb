@@ -12,6 +12,10 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MemberController;
+
 
 
 
@@ -29,6 +33,16 @@ Route::get('/', function () {
     return view('layouts.home');
 })->name('home');
 
+Route::get('/profile', function () {
+    return view('layouts.profile');
+})->name('profile');
+
+Route::middleware('auth')->group(function() {
+   // Route::get('/profile', [ProfileController::class,'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class,'update'])->name('profile.update');
+    Route::put('/profile/avatar', [ProfileController::class,'updateAvatar'])->name('profile.avatar');
+    Route::put('/profile/password', [ProfileController::class,'updatePassword'])->name('password.update');
+});
 
 // Route A propos
 Route::get('/about',function (){
@@ -120,3 +134,25 @@ Route::middleware('auth')->group(function () {
  // Route Blog 
  Route::get('/blog', [PostController::class, 'indexBlog'])->name('blog');
  Route::get('/blog/{post}', [PostController::class, 'showPost'])->name('post.show');
+
+
+ //Route NewsLetter 
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])
+->name('newsletter.subscribe');
+
+Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])
+->name('newsletter.unsubscribe');
+
+
+//Route Ajout Membre 
+Route::get('/admin/member', [MemberController::class, 'index'])->name('members.index');
+Route::get('/admin/member/create', [MemberController::class, 'create'])->name('members.create');
+Route::post('/admin/member/store', [MemberController::class, 'store'])->name('members.store');
+Route::get('/admin/member/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
+Route::put('/admin/member/{member}', [MemberController::class, 'update'])->name('members.update');
+Route::delete('/admin/member/{member}', [MemberController::class, 'delete'])->name('members.destroy');
+
+
+
+
+

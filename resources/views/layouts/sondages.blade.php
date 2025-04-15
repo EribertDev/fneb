@@ -125,7 +125,7 @@
     <div class="bg-white rounded-xl shadow-2xl mb-8 overflow-hidden transition-all duration-300 hover:shadow-lg">
         <!-- En-tête du sondage -->
         <div class="p-6 border-b-2 border-blue-100 bg-gradient-to-r from-[#1A3D7C] to-[#4D8EFF]">
-            <h2 class="text-2xl font-bold text-white">{{ $poll->question }}</h2>
+            <h2 class="text-2xl font-bold text-primary">{{ $poll->question }}</h2>
             <div class="flex items-center mt-2 text-sm text-blue-100">
                 <span class="mr-4">📅 {{ $poll->end_at ? 'Clôture : '.$poll->end_at->translatedFormat('d M Y H:i') : 'Durée illimitée' }}</span>
                 <span>🗳 {{ $poll->votes_count }} participations</span>

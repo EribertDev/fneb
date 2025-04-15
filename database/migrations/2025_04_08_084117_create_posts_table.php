@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->foreignId('editor_id')->constrained('users');
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
-            $table->enum('category', ['sante', 'academique', 'emploi', 'culture','logement','evenements','technology','autre'])->default('autre');
+            $table->enum('category', ['sante', 'academique', 'emploi', 'culture','logement','evenements','transport','restauration','autre'])->default('autre');
             $table->json('tags')->nullable();
             $table->dateTime('publication_date')->default(now());
             $table->timestamps();

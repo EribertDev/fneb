@@ -185,7 +185,7 @@
             <div class="form-group">
                 <label>Catégorie</label>
                 <select name="category">
-                    @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','technology','autre'] as $category)
+                    @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','transport','restauration','autre'] as $category)
                     <option value="{{ $category }}" {{ (old('category', $post->category ?? '') === $category ? 'selected' : '') }}>
                         {{ ucfirst($category) }}
                     </option>

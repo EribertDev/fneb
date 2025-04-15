@@ -127,6 +127,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('members.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>Gestion des menbres</p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
                         <a href="{{route('admin.actualites.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-newspaper"></i>
                             <p>Actualités</p>

@@ -19,8 +19,15 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Type *</label>
-                        <input type="text" name="type" value="{{ old('type', $evenement->type ?? '') }}" class="form-control" required>
+                        <label class="form-label">Type d'événement</label>
+                        <select name="type" 
+                                class="form-select @error('type') is-invalid @enderror"
+                                required>
+                            <option value="conference" {{ old('type') == 'conference' ? 'selected' : '' }}>Conférence</option>
+                            <option value="atelier" {{ old('type') == 'atelier' ? 'selected' : '' }}>Atelier</option>
+                            <option value="seminaire" {{ old('type') == 'seminaire' ? 'selected' : '' }}>Séminaire</option>
+                            <option value="autre" {{ old('type') == 'autre' ? 'selected' : '' }}>Autre</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 mb-3">
