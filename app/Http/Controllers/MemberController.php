@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class MemberController extends Controller
 {
@@ -14,8 +16,14 @@ class MemberController extends Controller
     public function index()
     {
         //
-        $members = Member::all();
-        return view('admin.members.index', compact('members'));
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            $users = User::all();
+            $members = Member::all();
+
+           return view('admin.members.index', compact('users', 'members'));
+        }
+
+        return redirect('/')->with('error', 'Accès refusé : vous devez être un administrateur.');
     }
 
     /**

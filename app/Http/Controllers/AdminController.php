@@ -16,7 +16,7 @@ class AdminController extends Controller
         {
             if (Auth::check() && Auth::user()->role === 'admin') {
                 $users = User::all();
-                return view('admin.index', compact('users'));
+                return view('admin.members.index', compact('users'));
             }
 
             return redirect('/')->with('error', 'Accès refusé : vous devez être un administrateur.');
@@ -54,7 +54,7 @@ class AdminController extends Controller
                 'profile_picture' => $path,
             ]);
 
-            return redirect()->route('admin.dashboard')->with('success', 'Utilisateur créé avec succès.');
+            return redirect()->back()->with('success', 'Utilisateur créé avec succès.');
         }
 
         return redirect('/')->with('error', 'Accès refusé : vous devez être un administrateur.');
@@ -104,11 +104,11 @@ class AdminController extends Controller
             logger()->error('Échec de la mise à jour');
         }
     
-        return redirect()->route('admin.dashboard')->with('success', 'Profil mis à jour');
+        return redirect()->back()->with('success', 'Profil mis à jour');
     }
 
     public function destroyUser(User $user) {
         $user->delete();
-        return redirect()->route('admin.dashboard')->with('success', 'Utilisateur supprimé avec succès.');
+        return redirect()->back()->with('success', 'Utilisateur supprimé avec succès.');
     }
 }

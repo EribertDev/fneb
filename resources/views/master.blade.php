@@ -7,7 +7,7 @@
     <meta name="description" content="@yield('description', 'FNEB')">
     <meta property="og:title" content="@yield('title-article', 'FNEB')">
     <meta property="og:description" content="@yield('description-article', 'actualité')">
-    <meta property="og:image" content="@yield('image-article', asset('/img/fneb-logo.png'))">
+    <meta property="og:image" content="@yield('image-article', asset('img/fneb-logo.png'))">
     <meta property="og:url" content=@yield('url-article', 'www.fneb.com')>
     <!-- Balises Meta AI pour WhatsApp -->
     <meta property="wabot" content="enable">
@@ -16,7 +16,7 @@
     <meta property="wa:fontStyle" content="italic">
     <meta property="wa:bold" content="true">
      <!-- Favicon -->
-     <link href="img/favicon.ico" rel="icon">
+     <link href="{{asset('img/fneb-logo.png')}}" rel="icon">
      <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">  <!-- Pour afficher l'alerte avant suppression d'un sondage-->
 
 

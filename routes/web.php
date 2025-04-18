@@ -13,6 +13,10 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\MemberController;
+
+
 
 // Route pour le dashboard admin
 Route::middleware(['auth'])->group(function () {
@@ -31,6 +35,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about',function (){
     return view('layouts.a-propos');
 })->name('about');
+
+//ROUTE DON 
+Route::get('/soutient/fneb',function (){
+    return view('layouts.don');
+})->name('don');
+Route::get('payment/finish',function() {
+    return view('layouts.paiement_finish');
+});
 
 //Route actualités
 Route::get('/actualites',[ ActualiteController::class, 'indexNews'])->name('actualites');

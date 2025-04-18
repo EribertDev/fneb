@@ -1,7 +1,30 @@
 @extends('master')
 @section('title') Actualités @endsection
+@section('og-title', $news->titre)
+@section('og-description', Str::limit(strip_tags( $news->contenu), 150))
+@section('og-image', asset('storage/' .  $news->image))
+@section('og-url', route('actualites.show',  $news->id))
 @section('extra-style')
 <style>
+    .btn-facebook { background: #3b5998; color: white; }
+.btn-twitter { background: #1da1f2; color: white; }
+.btn-whatsapp { background: #25d366; color: white; }
+.btn-copy-link { background: #6c757d; color: white; }
+
+.social-share-btn:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+/* Animation tooltip */
+.tooltip-inner {
+    background: var(--fneb-blue);
+    font-size: 0.9em;
+}
+
+.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--fneb-blue);
+}
     .media-gallery {
         position: sticky;
         top: 20px;
@@ -93,14 +116,13 @@
             </div>
             <h1 class="display-5 fw-bold">{{ $news->titre }}</h1>
             <div class="d-flex gap-4 mt-3 text-muted">
-                
-                <small><i class="fas fa-eye me-1"></i>{{ $news->views }} vues</small>
+             
             </div>
         </header>
     
         <div class="row g-5">
             <!-- Galerie média -->
-            <div class="col-lg-7">
+            <div class="col-lg-5">
                 <div class="media-gallery">
                     <!-- Carousel principal -->
                     <div id="mainCarousel" class="carousel slide shadow-lg" data-bs-ride="carousel">
@@ -134,9 +156,9 @@
             </div>
     
             <!-- Corps de l'article -->
-            <div class="col-lg-5">
+            <div class="col-lg-7">
                 <article class="article-content">
-                    <div class="lead mb-4">
+                    <div class=" text-primary lead mb-4">
                         {{ $news->excerpt ?? strip_tags($news->subtitre) }}
                     </div>
     
@@ -156,16 +178,37 @@
                     <!-- Partage social -->
                     <div class="social-sharing mt-5 pt-4 border-top">
                         <h4 class="h6 text-muted mb-3">Partager cet article :</h4>
-                        <div class="d-flex gap-3">
-                            <a href="#" class="btn btn-facebook btn-sm">
+                        <div class="d-flex gap-3 flex-wrap">
+                            <!-- Facebook -->
+                            <a href="#" 
+                               class="btn btn-facebook btn-sm social-share-btn"
+                               onclick="window.open(this.href, 'partager', 'width=600,height=400'); return false;"
+                               data-url="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}">
                                 <i class="fab fa-facebook-f me-2"></i>Facebook
                             </a>
-                            <a href="#" class="btn btn-twitter btn-sm">
+                    
+                            <!-- Twitter -->
+                            <a href="#" 
+                               class="btn btn-twitter btn-sm social-share-btn"
+                               onclick="window.open(this.href, 'partager', 'width=600,height=400'); return false;"
+                               data-url="https://x.com/intent/tweet?text={{ urlencode($news->titre) }}&url={{ urlencode(Request::url()) }}">
                                 <i class="fab fa-twitter me-2"></i>Twitter
                             </a>
-                            <a href="#" class="btn btn-whatsapp btn-sm">
+                    
+                            <!-- WhatsApp -->
+                            <a href="#" 
+                               class="btn btn-whatsapp btn-sm social-share-btn"
+                               onclick="window.open(this.href, 'partager', 'width=600,height=400'); return false;"
+                               data-url="https://api.whatsapp.com/send?text={{ urlencode($news->titre . ' ' . Request::url()) }}">
                                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
                             </a>
+                    
+                            <!-- Copier le lien -->
+                            <button class="btn btn-secondary btn-sm btn-copy-link" 
+                                    data-bs-toggle="tooltip" 
+                                    title="Copier le lien">
+                                <i class="fas fa-link me-2"></i>Copier
+                            </button>
                         </div>
                     </div>
                 </article>
@@ -184,7 +227,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $related->titre }}</h5>
                             <p class="card-text">{{ Str::limit($related->excerpt ?? strip_tags($related->contenu), 100) }}</p>
-                            <a href="{{ route('actualites.detail', $related->id) }}" class="btn btn-link">Lire →</a>
+                            <a href="{{ route('actualites.show', $related->id) }}" class="btn btn-link">Lire →</a>
                         </div>
                     </div>
                 </div>
@@ -194,4 +237,37 @@
         @endif
     </div>
 </section>
+@endsection
+
+@section('extra-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Génération des URLs de partage
+        const currentUrl = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+    
+        document.querySelectorAll('.social-share-btn').forEach(btn => {
+            const baseUrl = btn.dataset.url;
+            btn.href = baseUrl.replace('{{ urlencode(Request::url()) }}', currentUrl)
+                              .replace('{{ urlencode($news->titre) }}', title);
+        });
+    
+        // Copie du lien
+        const copyBtn = document.querySelector('.btn-copy-link');
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => {
+                    const tooltip = new bootstrap.Tooltip(copyBtn, {
+                        title: 'Lien copié !',
+                        trigger: 'manual'
+                    });
+                    tooltip.show();
+                    setTimeout(() => tooltip.hide(), 2000);
+                })
+                .catch(err => {
+                    console.error('Échec de la copie : ', err);
+                });
+        });
+    });
+    </script>
 @endsection

@@ -14,7 +14,7 @@
 
     .fneb-wave {
         background: linear-gradient(135deg, var(--fneb-blue) 0%, var(--fneb-red) 100%);
-        height:100%;
+        height:90%;
         clip-path: ellipse(100% 100% at 50% 0%);
     }
 
@@ -163,7 +163,7 @@
     <header class="fneb-wave position-relative">
         <div class="container position-relative" style="z-index: 1;">
             <div class="row justify-content-center py-5">
-                <div class="col-lg-8 text-center">
+                <div class="col-lg-9 text-center">
                     <div class="emblem-card p-5 mt-5">
                         <img src="{{asset('img/fneb-logo.png')}}" alt="Emblème FNEB" class="img-fluid mb-4" style="max-height: 150px;">
                         <h1 class="display-4 fw-bold text-primary">Fédération Nationale des Étudiants du Bénin</h1>
@@ -180,56 +180,45 @@
     <div class="container">
         <div class="row g-4">
             <!-- Unité -->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="value-card bg-unity">
                     <div class="value-icon">
                         <i class="fas fa-users fa-3x"></i>
                     </div>
                     <h3>Unité</h3>
-                    <p>23 universités fédérées<br>15 000 étudiants solidaires</p>
+                    <p>Plus de 20 universités fédérées<br>15 000+ étudiants solidaires</p>
                     <div class="value-divider"></div>
                     <small>"Seul on va vite, ensemble on va loin"</small>
                 </div>
             </div>
 
             <!-- Justice -->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="value-card bg-justice">
                     <div class="value-icon">
                         <i class="fas fa-balance-scale fa-3x"></i>
                     </div>
                     <h3>Justice</h3>
-                    <p>12 commissions thématiques<br>108 résolutions annuelles</p>
+                    <p>12 commissions thématiques<br>100+ résolutions annuelles</p>
                     <div class="value-divider"></div>
                     <small>"L'équité comme fondement"</small>
                 </div>
             </div>
 
             <!-- Action -->
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="value-card bg-action">
                     <div class="value-icon">
                         <i class="fas fa-fist-raised fa-3x"></i>
                     </div>
                     <h3>Action</h3>
-                    <p>45 événements annuels<br>92% de satisfaction étudiante</p>
+                    <p>30+ événements annuels<br>92% de satisfaction étudiante</p>
                     <div class="value-divider"></div>
                     <small>"La praxis au cœur du changement"</small>
                 </div>
             </div>
 
-            <!-- Engagement -->
-            <div class="col-md-6 col-lg-3">
-                <div class="value-card bg-commitment">
-                    <div class="value-icon">
-                        <i class="fas fa-hand-holding-heart fa-3x"></i>
-                    </div>
-                    <h3>Engagement</h3>
-                    <p>7 institutions spécialisées<br>500 bourses annuelles</p>
-                    <div class="value-divider"></div>
-                    <small>"L'étudiant au centre"</small>
-                </div>
-            </div>
+      
         </div>
     </div>
 </section>
@@ -379,7 +368,7 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">👥Le Bureau Exécutif National</h6>
                 
-                <h1 class="mb-5">Menbres</h1>
+                <h1 class="mb-5">Membres</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -469,18 +458,7 @@
 
 @section('extra-script')
 
-<script >
-    document.addEventListener('DOMContentLoaded', function() {
-        new PureCounter({
-            // Configuration personnalisée
-            selector: '.purecounter',
-            duration: 5,
-            delay: 5,
-            once: true,
-            legacy: false
-        });
-    });
-    </script>
+
 @endsection
 
 

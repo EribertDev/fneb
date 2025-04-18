@@ -1,9 +1,160 @@
 @extends('master')
-@section('title •','Accueil ')
+@section('title', 'Acceuil')
+@section('keywords', 'FNEB, Bénin, étudiants, éducation, solidarité, excellence')
+@section('author', 'FNEB')
+@section('viewport', 'width=device-width, initial-scale=1.0')
+@section('og-title', 'FNEB - La Voix des Étudiants Béninois')
+@section('og-description', 'La FNEB est le porte-voix des étudiants béninois, œuvrant pour la défense de leurs droits et la promotion de l’excellence académique.')
+@section('og-image', asset('img/fneb-logo.png'))
+@section('og-url', url()->current())
+
 @section('description', 'Description FNEB')
 @section('extra-style')
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
 <style>
+     :root {
+        --fneb-blue: #0055A4;
+        --fneb-gold: #FFD700;
+        --fneb-red: #A12C2F;
+    }
+
+    .fneb-wave {
+        background: linear-gradient(135deg, var(--fneb-blue) 0%, var(--fneb-red) 100%);
+        height:100%;
+        clip-path: ellipse(100% 100% at 50% 0%);
+    }
+
+    .emblem-card {
+        border: 3px solid var(--fneb-gold);
+        border-radius: 20px;
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+    }
+
+    .structure-timeline {
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .structure-timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background: var(--fneb-gold);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 30px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--fneb-blue);
+        border: 2px solid var(--fneb-gold);
+    }
+
+    .institution-card {
+        transition: transform 0.3s;
+        border-bottom: 4px solid var(--fneb-blue);
+    }
+
+    .institution-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .motto-banner {
+        background: repeating-linear-gradient(
+            45deg,
+            var(--fneb-blue),
+            var(--fneb-blue) 20px,
+            var(--fneb-gold) 20px,
+            var(--fneb-gold) 40px
+        );
+    }
+    .values-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.value-card {
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    height: 100%;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    transition: height 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+}
+
+.value-card:hover::after {
+    height: 8px;
+}
+
+.bg-unity { background: #0055A4; color: white; }
+.bg-unity::after { background: #FFD700; }
+
+.bg-justice { background: #A12C2F; color: white; }
+.bg-justice::after { background: #FFD700; }
+
+.bg-action { background: #FFD700; color: #2a0a0c; }
+.bg-action::after { background: #A12C2F; }
+
+.bg-commitment { background: #2a0a0c; color: white; }
+.bg-commitment::after { background: #FFD700; }
+
+.value-icon {
+    margin: 1rem auto;
+    padding: 1rem;
+    display: inline-block;
+}
+
+.value-divider {
+    width: 60px;
+    height: 2px;
+    background: rgba(255,255,255,0.3);
+    margin: 1.5rem auto;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.value-card small {
+    display: block;
+    font-style: italic;
+    margin-top: 1rem;
+    opacity: 0.8;
+}
     .badge {
         position: absolute;
         top: 15px;
@@ -221,11 +372,11 @@
                                 <p class="fs-5 text-white mb-4 pb-2">        La FNEB œuvre quotidiennement pour la défense de vos droits étudiants, la promotion de l'excellence académique 
                                     et le développement de campus inclusifs. Rejoignez la plus grande communauté étudiante du Bénin !</p>
                                     <div class="d-flex gap-3">
-                                        <a href="/a-propos" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
+                                        <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
                                             <i class="fas fa-info-circle me-2"></i>Découvrir la FNEB
                                         </a>
-                                        <a href="/adhesion" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
-                                            <i class="fas fa-handshake me-2"></i>Rejoindre la FNEB
+                                        <a href="{{route('don')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">
+                                            <i class="fas fa-hand-holding-usd me-2"></i>Soutenez la FNEB
                                         </a>
                                     </div>
                             </div>
@@ -245,12 +396,13 @@
                                     La FNEB s'engage à amplifier la voix étudiante, à promouvoir l'innovation pédagogique et à créer des campus solidaires. Rejoignez-nous pour transformer l'avenir de l'éducation au Bénin !
                                 </p>
                                 <div class="d-flex gap-3">
-                                    <a href="/presentation" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
-                                        <i class="fas fa-university me-2"></i>Qui sommes-nous ?
-                                    </a>
                                     <a href= {{ route('register') }} class="btn btn-light py-md-3 px-md-5 animated slideInRight">
                                         <i class="fas fa-user-plus me-2"></i>Inscrivez-vous
                                     </a>
+                                    <a href="{{route('don')}}" class="btn btn-primary py-md-3 px-md-5 animated slideInRight">
+                                        <i class="fas fa-hand-holding-usd me-2"></i>Soutenez la FNEB
+                                    </a>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -264,168 +416,193 @@
  <!-- About Start -->
  <div class="container-xxl py-5">
     <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                <div class="position-relative h-100">
-                    <img class="img-fluid position-absolute w-90 h-100 border-rounded" src="img/fneb-logo.png" alt="" style="object-fit: cover;">
+       <!-- Valeurs FNEB -->
+<section class="values-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Unité -->
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card bg-unity">
+                    <div class="value-icon">
+                        <i class="fas fa-users fa-3x"></i>
+                    </div>
+                    <h3>Unité</h3>
+                    <p>23 universités fédérées<br>15 000 étudiants solidaires</p>
+                    <div class="value-divider"></div>
+                    <small>"Seul on va vite, ensemble on va loin"</small>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                <h6 class="section-title bg-white text-start text-primary pe-3">Qui sommes nous </h6>
-                <h1 class="mb-4">Notre Raison d'Être</h1>
-          
-                <p class="mb-4"> La FNEB est le porte-voix officiel des étudiants béninois depuis [année de création]. 
-                    Nous œuvrons quotidiennement pour :</p>
-                    
-                <div class="row gy-2 gx-4 mb-4">
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>✅ <strong>Défendre</strong> les droits sociaux et académiques des étudiants</p>
+
+            <!-- Justice -->
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card bg-justice">
+                    <div class="value-icon">
+                        <i class="fas fa-balance-scale fa-3x"></i>
                     </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>✅ <strong>Promouvoir</strong> l'excellence éducative et l'innovation</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>✅ <strong>Construire</strong> des campus inclusifs et durables</p>
-                    </div>
-                    
+                    <h3>Justice</h3>
+                    <p>12 commissions thématiques<br>108 résolutions annuelles</p>
+                    <div class="value-divider"></div>
+                    <small>"L'équité comme fondement"</small>
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">En Savoir plus</a>
+            </div>
+
+            <!-- Action -->
+            <div class="col-md-6 col-lg-4">
+                <div class="value-card bg-action">
+                    <div class="value-icon">
+                        <i class="fas fa-fist-raised fa-3x"></i>
+                    </div>
+                    <h3>Action</h3>
+                    <p>45 événements annuels<br>92% de satisfaction étudiante</p>
+                    <div class="value-divider"></div>
+                    <small>"La praxis au cœur du changement"</small>
+                </div>
+            </div>
+
+         
+        </div>
+    </div>
+</section>
+    <!-- Structure Organisationnelle -->
+    <section id="structure" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Architecture Institutionnelle</h2>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="structure-timeline">
+                        <div class="timeline-item">
+                            <h3>Sections Fédérales</h3>
+                            <ul class="list-unstyled">
+                                <li>• Université d'Abomey-Calavi</li>
+                                <li>• Université Nationale d'Agriculture</li>
+                                <li>• Université de Parakou</li>
+                                <li>• Représentations Internationales (20+ étudiants)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h3>Unions d'Entités</h3>
+                            <div class="row row-cols-2 row-cols-md-3 g-2">
+                                <div class="col">
+                                    <div class="badge bg-primary">EPAC</div>
+                                </div>
+                                <!-- Ajouter les autres entités -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-lg">
+                        <div class="card-body">
+                            <h3 class="card-title">Couverture Nationale</h3>
+                            <img src="map-benin.png" alt="Carte du Bénin" class="img-fluid">
+                            <div class="legend mt-3">
+                                <span class="badge bg-primary me-2">Sections Fédérales</span>
+                                <span class="badge bg-success">Institutions Spécialisées</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Institutions Spécialisées -->
+    <section id="institutions" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Piliers Institutionnels</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="institution-card card h-100 text-center">
+                        <div class="card-header bg-primary text-white">
+                            <i class="fas fa-icons fa-3x"></i>
+                        </div>
+                        <div class="card-body">
+                            <h4>BACE</h4>
+                            <p>Ensemble Artistique et Culturel des Étudiants</p>
+                            <small class="text-muted">Club UNESCO agréé</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ajouter autres institutions -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectifs & Devoirs -->
+    <section id="objectifs" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Nos Combats</h3>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h4 class="accordion-header">
+                                <button class="accordion-button">Éducation pour tous</button>
+                            </h4>
+                            <div class="accordion-body">
+                                <p>Démocratisation de l'accès à l'enseignement supérieur</p>
+                            </div>
+                        </div>
+                        <!-- Ajouter autres objectifs -->
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="mb-4">Engagements Membres</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle me-2 text-gold"></i>
+                            Respect des biens publics universitaires
+                        </li>
+                        <!-- Ajouter autres devoirs -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
     </div>
 </div>
 <!-- About End -->
-
-
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item text-center pt-3">
-                            <div class="p-4">
-                            <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
-                            <h4>Solidarité</h4>
-                            <p>Un réseau d'entraide présent dans toutes les universités du Bénin</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fas fa-gavel fa-3x text-danger mb-3"></i>
-                            <h4>Intégrité</h4>
-                            <p>Transparence totale dans la gestion des fonds étudiants</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fas fa-lightbulb fa-3x text-warning mb-3"></i>
-                            <h4>Innovation</h4>
-                            <p>Laboratoire d'idées pour l'éducation de demain</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fas fa-lightbulb fa-3x text-warning mb-3"></i>
-                            <h4>Innovation</h4>
-                            <p>Laboratoire d'idées pour l'éducation de demain</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
 
 
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
                 <h6 class="section-title bg-white text-center text-primary px-3">👥Le Bureau Exécutif National</h6>
                 
                 <h1 class="mb-5">Membres</h1>
             </div>
+           
             <div class="row g-4">
+                @foreach ($members as $member)
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid" src="{{asset('storage/' .$member->photo)}}"   alt=" {{ $member->name }}">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                          
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
+                            <h5 class="mb-0">[ {{ $member->name }}  ] </h5>
+                            <small><strong>{{ $member->position }} </strong></small>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+            
+               
+
             </div>
 
             
@@ -439,7 +616,7 @@
     <!-- Actualités  Start -->
     <section class="news-section py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5">Actualités de la FNEB</h2>
+            <h2 class="text-center mb-5"> Dernières Actualités de la FNEB</h2>
             
             <div class="row g-4" data-masonry='{"percentPosition": true}'>
                 @foreach($latestActualites as $actualite)
@@ -470,12 +647,7 @@
                 @endforeach
             </div>
             
-            <!-- Pagination -->
-            <nav class="mt-5">
-                <div class="d-flex justify-content-center">
-                    {{ $latestActualites->links() }}
-                </div>
-            </nav>
+           
         </div>
     </section>
     <!-- Actualités End -->    
@@ -485,7 +657,7 @@
 
     <!-- Events Start -->
     <div class="container px-4 py-5" style="background: #f8fafc;">
-        <h2 class="text-center mb-5">Evènements de la FNEB</h2>
+        <h2 class="text-center mb-5"> Derniers Evènements de la FNEB</h2>
         <!-- Filtres -->
         <div class="row mb-4 g-3">
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
@@ -576,7 +748,7 @@
                            class="nav-link {{ !request('category') ? 'active' : '' }}">
                             Tous
                         </a>
-                        @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','technology','autre'] as $category)
+                        @foreach(['sante', 'academique', 'emploi', 'culture','logement','evenements','transport','restauration','autre'] as $category)
                         <a href="?category={{ $category }}" 
                            class="nav-link {{ request('category') === $category ? 'active' : '' }}">
                             {{ ucfirst($category) }}
@@ -686,26 +858,30 @@
                         @endforelse
                     </div>
 
-                    <!-- Pagination -->
-                    @if($latestPosts->hasPages())
-                    <nav class="mt-5">
-                        {{ $latestPosts->appends(request()->query())->links() }}
-                    </nav>
-                    @endif
+             
+             
                 </div>
         
                 <!-- Sidebar -->
                 <div class="col-lg-4">
                     <div class="blog-sidebar sticky-top">
+                        @if(session('newsletter_success'))
+                        <div class="alert alert-success mb-3">
+                            {{ session('newsletter_success') }}
+                        </div>
+                    @endif
                         <!-- Newsletter -->
                         <div class="card mb-4 border-0 shadow-sm">
                             <div class="card-body text-center bg-primary text-white rounded-3">
                                 <i class="fas fa-envelope-open-text fa-3x mb-3"></i>
                                 <h3 class="h5">Abonnez-vous à notre newsletter</h3>
-                                <form action="" method="POST">
+                                <form action="{{ route('newsletter.subscribe') }}" method="POST">
                                     @csrf
-                                    <input type="email" name="email" class="form-control mb-2" required placeholder="Votre email">
+                                    <input type="email" name="email" class=" mb-2 form-control @error('email') is-invalid @enderror"  required placeholder="Votre email">
                                     <button type="submit" class="btn btn-light w-100">S'abonner</button>
+                                        @error('email')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                        @enderror
                                 </form>
                             </div>
                         </div>
