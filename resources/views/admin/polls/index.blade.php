@@ -38,13 +38,10 @@
                             </span>
                         </td>
                         <td>{{ $poll->end_at ? $poll->end_at->format('d/m/Y H:i') : '-' }}</td>
-                        <td>{{ $poll->votes_count }}</td>
+                        <td>{{ $poll->total_votes }}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('admin.polls.edit', $poll) }}" 
-                                   class="btn btn-sm btn-outline-anepes-gold">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                              
                                 <form action="{{ route('admin.polls.destroy', $poll) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -52,10 +49,7 @@
                                         <i class="fas fa-archive"></i>
                                     </button>
                                 </form>
-                                <a href="{{ route('admin.polls.show', $poll) }}" 
-                                   class="btn btn-sm btn-outline-anepes-red" target="_blank">
-                                    <i class="fas fa-eye"></i>
-                                </a>
+                            
                             </div>
                         </td>
                     </tr>

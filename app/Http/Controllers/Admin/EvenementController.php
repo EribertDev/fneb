@@ -106,8 +106,10 @@ class EvenementController extends Controller
     public function indexNews()
     {
         //
-        $evenements = Evenement::latest()
-           
+        $evenements = Evenement::query()
+        ->when(request('type'), function($query) {
+            $query->where('type', request('type'));
+        })
             ->paginate(6);
         return view('layouts.evenements', compact('evenements'));
        

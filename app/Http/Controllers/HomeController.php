@@ -26,4 +26,13 @@ class HomeController extends Controller
 
         return view('layouts.home', compact('latestActualites', 'latestEvenements', 'latestPosts', 'popularPosts', 'latestPoll','members'));
     }
+    
+
+    public function indexAbout() {
+        $members = Member::where('is_visible', true)->get();
+  
+  return view('layouts.a-propos',compact('members'));
 }
+
+}
+

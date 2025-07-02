@@ -22,6 +22,16 @@
                 </div>
                 
                 <div class="mb-3">
+                    <label for="phone">Téléphone</label>
+                    <input type="text" name="phone" id="phone" value="{{old('phone',$member->phone ?? '')}}" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" value="{{old('email',$member->email ?? '')}}" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
                     <label>Poste</label>
                     <input type="text" name="position" value="{{old('position',$member->position ?? '')}}" class="form-control" required>
                   

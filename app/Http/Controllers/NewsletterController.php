@@ -31,17 +31,17 @@ class NewsletterController extends Controller
             ->with('newsletter_success', 'Merci pour votre inscription à notre newsletter !');
     }
 
-    public function unsubscribe($token)
+      public function unsubscribe($token)
     {
         $subscriber = Newsletter::where('token', $token)->first();
 
         if (!$subscriber) {
-            return view('newsletter.unsubscribe')->with('error', 'Lien de désabonnement invalide');
+            return redirect()->back()->with('error', 'Lien de désabonnement invalide');
         }
 
         $subscriber->delete();
 
-        return view('newsletter.unsubscribe')->with('success', 'Vous êtes désormais désabonné de notre newsletter');
+        return redirect()->back()->with('success', 'Vous êtes désormais désabonné de notre newsletter');
     }
 
 

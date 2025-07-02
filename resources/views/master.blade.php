@@ -3,7 +3,7 @@
 <head>
     <title>FNEB-@yield('title', 'Titre par défaut')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
+    <meta content="@yield('tags')" name="keywords">
     <meta name="description" content="@yield('description', 'FNEB')">
     <meta property="og:title" content="@yield('title-article', 'FNEB')">
     <meta property="og:description" content="@yield('description-article', 'actualité')">

@@ -44,6 +44,8 @@ class MemberController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'phone'=>'required|string|max:20',
+            'email' => 'required|email|max:255|unique:members,email',
             'position' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg',
             'is_visible' => 'sometimes'
@@ -54,6 +56,8 @@ class MemberController extends Controller
         Member::create([
             'name' => $request->name,
             'position' => $request->position,
+            'phone' => $request->phone,
+            'email' => $request->email,
             'photo' => $imagePath,
             'is_visible' => $request->has('is_visible')
         ]);
@@ -85,6 +89,8 @@ class MemberController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:255|unique:members,email,'.$member->id,
             'position' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'is_visible' => 'sometimes'
@@ -101,6 +107,8 @@ class MemberController extends Controller
         $member->update([
             'name' => $request->name,
             'position' => $request->position,
+            'phone' => $request->phone,
+            'email' => $request->email,
             'is_visible' => $request->has('is_visible')
         ]);
 

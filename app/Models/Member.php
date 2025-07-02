@@ -11,6 +11,8 @@ class Member extends Model
         'name', 
         'position',
         'photo',
-        'is_visible'
+        'is_visible',
+        'phone',
+        'email'
     ];
 }

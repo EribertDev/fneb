@@ -1,5 +1,13 @@
 @extends('master')
 @section('title') Blog @endsection
+    if @isset($post)
+      
+        @section('title-article'){{ $post->title }}@endsection
+        @section('description-article'){{ Str::limit(strip_tags($post->content), 160) }}@endsection
+       
+        
+    @endisset
+
 @section('extra-style')
 <style>
     .blog-detail {

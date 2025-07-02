@@ -18,7 +18,7 @@ class Post extends Model
         'editor_id',
         'status',
         'category',
-        'tags',
+       
         'publication_date'
     ];
 

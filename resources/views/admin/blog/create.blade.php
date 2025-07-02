@@ -202,18 +202,34 @@
          
             </div>
 
-            @isset($post)
+           
             <div class="form-group">
                 <label>Statut</label>
-                <select name="status">
-                    @foreach(['draft', 'published', 'archived'] as $status)
-                    <option value="{{ $status }}" {{ (old('status', $post->status) === $status) ? 'selected' : '' }}>
-                        {{ ucfirst($status) }}
-                    </option>
-                    @endforeach
-                </select>
+               
+                        <div class="input-group has-validation">
+                            <select name="status" id="statusSelect" 
+                                class="form-select form-select-lg border-primary @error('status') is-invalid @enderror" 
+                                required
+                                x-data="{}"
+                                x-init="function() { new Choices($el, {
+                                    searchEnabled: false,
+                                    placeholder: false,
+                                    itemSelectText: ''
+                                })}">
+                                <option value="draft" data-icon="bi-file-earmark" selected>Brouillon</option>
+                                <option value="published" data-icon="bi-globe">Publié immédiatement</option>
+                                <option value="archived" data-icon="bi-archive">Archivé</option>
+                            </select>
+                            <span class="input-group-text bg-primary text-white border-primary">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                            @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+               
             </div>
-            @endisset
+           
 
             
         </div>

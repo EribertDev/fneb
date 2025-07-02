@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Poll;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Models\Vote;
+use Illuminate\Support\Facades\Cookie;
 
 
 
@@ -15,8 +18,13 @@ class PollController extends Controller
      */
     public function index()
     {
+
+          $polls = Poll::where('is_public', true)
+            ->withCount('options')
+            ->paginate(10);
+
         return view('admin.polls.index', [
-            'polls' => Poll::public()->active()->withCount('options')->paginate(10)
+            'polls' => $polls,
         ]);
     }
 
@@ -54,9 +62,8 @@ class PollController extends Controller
      */
     public function show(Poll $poll)
     {
-        return view('polls.show', [
-            'poll' => $poll->load('options.votes')
-        ]);
+        //
+        
     }
     /**
      * Show the form for editing the specified resource.
@@ -64,6 +71,9 @@ class PollController extends Controller
     public function edit(Poll $poll)
     {
         //
+        return view('admin.polls.edit', [
+            'poll' => $poll->load('options')
+        ]);
     }
 
     /**
@@ -80,6 +90,20 @@ class PollController extends Controller
     public function destroy(Poll $poll)
     {
         //
+         DB::transaction(function () use ($poll) {
+        // 1. Supprimer tous les votes pour ce sondage
+        Vote::whereIn('poll_option_id', $poll->options()->pluck('id'))->delete();
+        
+        // 2. Supprimer les options
+        $poll->options()->delete();
+        
+        // 3. Supprimer le sondage
+        $poll->delete();
+
+    });
+        
+    
+        return back()->with('success', 'Sondage archivé !');
     }
 
 
@@ -89,6 +113,7 @@ public function indexPolls()
     //
     $polls = Poll::where('is_public', true)
     ->where('status', 'active')
+    ->withCount('options')
     ->paginate(5);
 
     $voterHash = request()->cookie('voterHash');

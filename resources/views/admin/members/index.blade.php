@@ -37,6 +37,8 @@
                         <tr>
                             <th>Photo</th>
                             <th>Nom</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
                             <th>Poste</th>
                             <th>Visible</th>
                             <th>Actions</th>
@@ -47,6 +49,8 @@
                         <tr>
                             <td><img src="{{ asset('storage/'.$member->photo) }}" width="80"></td>
                             <td>{{ $member->name }}</td>
+                            <td> {{$member->phone}} </td>
+                            <td> {{$member->email}} </td>
                             <td>{{ $member->position }}</td>
                             <td>{{ $member->is_visible ? 'Oui' : 'Non' }}</td>
                             <td>

@@ -1,6 +1,8 @@
 @extends('master')
 @section('title') Blog @endsection
 @section('extra-style')
+
+
 <style>
     .blog-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -143,7 +145,7 @@
                             @if($post->image)
                             <div class="row g-0">
                                 <div class="{{ $loop->first ? 'col-md-6' : 'col-12' }}">
-                                    <img src="{{ asset('storage/'.$post->image) }}" 
+                                    <img src="{{ Storage::url($post->image) }}" 
                                          class="img-fluid h-100 object-fit-cover" 
                                          alt="{{ $post->title }}">
                                 </div>

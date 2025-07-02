@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\Models\Member;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,8 @@ class AdminController extends Controller
         {
             if (Auth::check() && Auth::user()->role === 'admin') {
                 $users = User::all();
-                return view('admin.members.index', compact('users'));
+                $members=Member::where('is_visible', true)->get();
+                return view('admin.members.index', compact('users','members'));
             }
 
             return redirect('/')->with('error', 'Accès refusé : vous devez être un administrateur.');

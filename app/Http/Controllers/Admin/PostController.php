@@ -92,20 +92,27 @@ return view('layouts.blog', compact('posts', 'popularPosts'));
             'content' => 'required|string',
             'category' => 'required|in:sante,academique,emploi,culture,logement,evenements,transport,restauration,autre',
             'image' => 'nullable|image',
+            'status' => 'required|in:draft,published,archived',
         ]);
         $config = HTMLPurifier_Config::createDefault();
         $purifier = new HTMLPurifier($config);
         $validated['content'] = $purifier->purify($request->content);
-
+       if($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('posts', 'public');
+        } else {
+            $imagePath = null;
+        }
         $post = Post::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'content' =>  $validated['content'] ,
             'editor_id' => auth()->id(),
             'category' => $request->category,
-            'status' => 'published',
-            'tags' => $request->tags ? json_encode(explode(',', $request->tags)) : null,
-            'image' => $request->file('image') ? $request->file('image')->store('posts') : null,
+            'status' => $request->status,
+            'publication_date' => $request->status === 'published' ? now() : null,
+            'tags' =>$request->tags  ? array_map('trim', explode(',', $request->tags)) : [],
+            
+            'image' => $imagePath ?  : null,
         ]);
 
         return redirect()->route('admin.posts.index');
@@ -140,12 +147,15 @@ return view('layouts.blog', compact('posts', 'popularPosts'));
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'status' => 'required|in:draft,published,archived',
+            'category' => 'required|in:sante,academique,emploi,culture,logement,evenements,transport,restauration,autre',
         ]);
         $config = HTMLPurifier_Config::createDefault();
         $purifier = new HTMLPurifier($config);
+       
+
         
         //  purifies le contenu ici
-        $validated = $request->only(['title', 'status']);
+        $validated = $request->only(['title', 'status', 'category']);
         $validated['content'] = $purifier->purify($request->content);
         if ($request->hasFile('image')) {
             Storage::delete($post->image);
@@ -166,6 +176,6 @@ return view('layouts.blog', compact('posts', 'popularPosts'));
         //
        
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('admin.posts.index');
     }
 }

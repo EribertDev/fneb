@@ -44,12 +44,12 @@ class NewContentNotification extends Notification
                    
                     ->subject("[FNEB] Nouveau $this->contentType : " . $this->title)
                     ->greeting("Bonjour,")
-                    ->line("Un nouveau $this->contentType a été publié sur le site de la FNEB :")
+                    ->line("Un nouvel  $this->contentType a été publié sur le site de la FNEB :")
                     ->line('**' . $this->title . '**')
                     ->line($this->excerpt)
                     ->action('Lire la suite', $this->url)
                     ->line('Pour ne plus recevoir ces notifications :');
-                    //->action('Se désabonner', route('newsletter.unsubscribe', $subscriber->token));
+                    ->action('Se désabonner', route('newsletter.unsubscribe', $subscriber->token));
     }
 
     /**

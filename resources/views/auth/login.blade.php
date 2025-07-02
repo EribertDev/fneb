@@ -104,7 +104,7 @@
                                     {{ __('Se souvenir de moi') }}
                                 </label>
                             </div>
-                            <a href="" class="text-decoration-none text-primary">
+                            <a href="{{route('password.request')}}" class="text-decoration-none text-primary">
                                 {{ __('Mot de passe oublié ?') }}
                             </a>
                         </div>

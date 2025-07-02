@@ -5,358 +5,171 @@
 @section('extra-style')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<style>
-    :root {
-        --fneb-blue: #0055A4;
-        --fneb-gold: #FFD700;
-        --fneb-red: #A12C2F;
-    }
-
-    .fneb-wave {
-        background: linear-gradient(135deg, var(--fneb-blue) 0%, var(--fneb-red) 100%);
-        height:90%;
-        clip-path: ellipse(100% 100% at 50% 0%);
-    }
-
-    .emblem-card {
-        border: 3px solid var(--fneb-gold);
-        border-radius: 20px;
-        background: rgba(255,255,255,0.9);
-        backdrop-filter: blur(10px);
-    }
-
-    .structure-timeline {
-        position: relative;
-        padding-left: 40px;
-    }
-
-    .structure-timeline::before {
-        content: '';
-        position: absolute;
-        left: 15px;
-        top: 0;
-        height: 100%;
-        width: 2px;
-        background: var(--fneb-gold);
-    }
-
-    .timeline-item {
-        position: relative;
-        margin-bottom: 30px;
-        padding-left: 30px;
-    }
-
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -8px;
-        top: 5px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--fneb-blue);
-        border: 2px solid var(--fneb-gold);
-    }
-
-    .institution-card {
-        transition: transform 0.3s;
-        border-bottom: 4px solid var(--fneb-blue);
-    }
-
-    .institution-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .motto-banner {
-        background: repeating-linear-gradient(
-            45deg,
-            var(--fneb-blue),
-            var(--fneb-blue) 20px,
-            var(--fneb-gold) 20px,
-            var(--fneb-gold) 40px
-        );
-    }
-    .values-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-}
-
-.value-card {
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    height: 100%;
-    transition: transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.value-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    transition: height 0.3s ease;
-}
-
-.value-card:hover {
-    transform: translateY(-10px);
-}
-
-.value-card:hover::after {
-    height: 8px;
-}
-
-.bg-unity { background: #0055A4; color: white; }
-.bg-unity::after { background: #FFD700; }
-
-.bg-justice { background: #A12C2F; color: white; }
-.bg-justice::after { background: #FFD700; }
-
-.bg-action { background: #FFD700; color: #2a0a0c; }
-.bg-action::after { background: #A12C2F; }
-
-.bg-commitment { background: #2a0a0c; color: white; }
-.bg-commitment::after { background: #FFD700; }
-
-.value-icon {
-    margin: 1rem auto;
-    padding: 1rem;
-    display: inline-block;
-}
-
-.value-divider {
-    width: 60px;
-    height: 2px;
-    background: rgba(255,255,255,0.3);
-    margin: 1.5rem auto;
-}
-
-.value-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.value-card p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.value-card small {
-    display: block;
-    font-style: italic;
-    margin-top: 1rem;
-    opacity: 0.8;
-}
-</style>
+<link rel="stylesheet" href="{{asset('css/about.css')}}">
 @endsection
 @section('content')
 
 
 
-
-
-
- 
-    <!-- Héro avec Emblème -->
-    <header class="fneb-wave position-relative">
-        <div class="container position-relative" style="z-index: 1;">
-            <div class="row justify-content-center py-5">
-                <div class="col-lg-9 text-center">
-                    <div class="emblem-card p-5 mt-5">
-                        <img src="{{asset('img/fneb-logo.png')}}" alt="Emblème FNEB" class="img-fluid mb-4" style="max-height: 150px;">
-                        <h1 class="display-4 fw-bold text-primary">Fédération Nationale des Étudiants du Bénin</h1>
-                        <div class="motto-banner text-white p-3 my-4 rounded">
-                            <h2 class="m-0">Unité • Justice • Action</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="fneb-about">
+        <div class="header">
+            <h1>Fédération Nationale des Étudiants du Bénin (FNEB)</h1>
+            <p>L'organisation représentative de tous les étudiants béninois, œuvrant pour une éducation de qualité, la justice et l'unité dans la diversité.</p>
         </div>
-    </header>
-<!-- Valeurs FNEB -->
-<section class="values-section py-5">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Unité -->
-            <div class="col-md-6 col-lg-4">
-                <div class="value-card bg-unity">
-                    <div class="value-icon">
-                        <i class="fas fa-users fa-3x"></i>
-                    </div>
-                    <h3>Unité</h3>
-                    <p>Plus de 20 universités fédérées<br>15 000+ étudiants solidaires</p>
-                    <div class="value-divider"></div>
-                    <small>"Seul on va vite, ensemble on va loin"</small>
-                </div>
-            </div>
-
-            <!-- Justice -->
-            <div class="col-md-6 col-lg-4">
-                <div class="value-card bg-justice">
-                    <div class="value-icon">
-                        <i class="fas fa-balance-scale fa-3x"></i>
-                    </div>
-                    <h3>Justice</h3>
-                    <p>12 commissions thématiques<br>100+ résolutions annuelles</p>
-                    <div class="value-divider"></div>
-                    <small>"L'équité comme fondement"</small>
-                </div>
-            </div>
-
-            <!-- Action -->
-            <div class="col-md-6 col-lg-4">
-                <div class="value-card bg-action">
-                    <div class="value-icon">
-                        <i class="fas fa-fist-raised fa-3x"></i>
-                    </div>
-                    <h3>Action</h3>
-                    <p>30+ événements annuels<br>92% de satisfaction étudiante</p>
-                    <div class="value-divider"></div>
-                    <small>"La praxis au cœur du changement"</small>
-                </div>
-            </div>
-
-      
-        </div>
-    </div>
-</section>
-    <!-- Structure Organisationnelle -->
-    <section id="structure" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Architecture Institutionnelle</h2>
+        
+        <div class="mission-box">
+            <h2>Notre Mission</h2>
+            <p>La FNEB a pour mission fondamentale de défendre les droits et intérêts des étudiants béninois, de promouvoir un enseignement supérieur de qualité, et de cultiver l'esprit de solidarité et de responsabilité chez les étudiants.</p>
             
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="structure-timeline">
-                        <div class="timeline-item">
-                            <h3>Sections Fédérales</h3>
-                            <ul class="list-unstyled">
-                                <li>• Université d'Abomey-Calavi</li>
-                                <li>• Université Nationale d'Agriculture</li>
-                                <li>• Université de Parakou</li>
-                                <li>• Représentations Internationales (20+ étudiants)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h3>Unions d'Entités</h3>
-                            <div class="row row-cols-2 row-cols-md-3 g-2">
-                                <div class="col">
-                                    <div class="badge bg-primary">EPAC</div>
-                                </div>
-                                <!-- Ajouter les autres entités -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-lg">
-                        <div class="card-body">
-                            <h3 class="card-title">Couverture Nationale</h3>
-                            <img src="map-benin.png" alt="Carte du Bénin" class="img-fluid">
-                            <div class="legend mt-3">
-                                <span class="badge bg-primary me-2">Sections Fédérales</span>
-                                <span class="badge bg-success">Institutions Spécialisées</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Institutions Spécialisées -->
-    <section id="institutions" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Piliers Institutionnels</h2>
+            <div class="motto">Unité - Justice - Action</div>
+            <p>Notre devise guide chacune de nos actions et représente les valeurs fondamentales de notre organisation.</p>
             
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="institution-card card h-100 text-center">
-                        <div class="card-header bg-primary text-white">
-                            <i class="fas fa-icons fa-3x"></i>
-                        </div>
-                        <div class="card-body">
-                            <h4>BACE</h4>
-                            <p>Ensemble Artistique et Culturel des Étudiants</p>
-                            <small class="text-muted">Club UNESCO agréé</small>
-                        </div>
-                    </div>
+            <div class="logo-explanation">
+                <div class="logo-preview">
+                   <img src="{{asset('img/fneb-logo.png')}}" alt="Emblème FNEB" class="img-rounded mb-4" style="max-height: 120px;">
+
                 </div>
                 
-                <!-- Ajouter autres institutions -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Objectifs & Devoirs -->
-    <section id="objectifs" class="py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Nos Combats</h3>
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <h4 class="accordion-header">
-                                <button class="accordion-button">Éducation pour tous</button>
-                            </h4>
-                            <div class="accordion-body">
-                                <p>Démocratisation de l'accès à l'enseignement supérieur</p>
-                            </div>
-                        </div>
-                        <!-- Ajouter autres objectifs -->
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Engagements Membres</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle me-2 text-gold"></i>
-                            Respect des biens publics universitaires
-                        </li>
-                        <!-- Ajouter autres devoirs -->
+                <div class="logo-symbolism">
+                    <h3>Symbolisme de notre emblème</h3>
+                    <ul>
+                        <li><strong>Les deux mains</strong> représentent la force et la dynamique de la FNEB</li>
+                        <li><strong>La colombe</strong> symbolise la paix, l'unité et la mission de croissance</li>
+                        <li><strong>Le bleu</strong> sur fond blanc évoque la paix et le bonheur que chaque membre doit préserver</li>
+                        <li><strong>Le logo entier</strong> incarne notre engagement pour une communauté étudiante unie et prospère</li>
                     </ul>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Devoirs -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5">Devoirs des Membres</h2>
+        
+        <div class="structure-section">
+            <h2 class="section-title">Structure Organisationnelle</h2>
             
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-icon">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h5>Respect des valeurs</h5>
-                                <p>Adhésion aux principes de démocratie et de justice sociale</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="timeline-content">
-                                <h5>Engagement collectif</h5>
-                                <p>Participation active à la vie associative étudiante</p>
-                            </div>
-                        </div>
+            <div class="structure-grid">
+                <div class="structure-card">
+                    <div class="card-header">Sections Fédérales</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-university"></i>Université d'Abomey-Calavi</li>
+                            <li><i class="fas fa-university"></i>Université Nationale d'Agriculture</li>
+                            <li><i class="fas fa-university"></i>Université Nationale des Sciences, Technologies, Ingénierie et Mathématiques</li>
+                            <li><i class="fas fa-university"></i>Université de Parakou</li>
+                            <li><i class="fas fa-globe-africa"></i>Sections par pays étranger (avec ≥20 étudiants béninois)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="card-header">Unions d'Entités (UAC)</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-graduation-cap"></i>Ecole Polytechnique d'Abomey-Calavi (EPAC)</li>
+                            <li><i class="fas fa-graduation-cap"></i>Ecole Nationale d'Administration (ENA)</li>
+                            <li><i class="fas fa-graduation-cap"></i>Faculté des Sciences Techniques (FAST)</li>
+                            <li><i class="fas fa-graduation-cap"></i>Faculté des Sciences Economiques et de Gestion (FASEG)</li>
+                            <li><i class="fas fa-graduation-cap"></i>Faculté de Droit et de Sciences Politiques (FADESP)</li>
+                            <li><i class="fas fa-graduation-cap"></i>Faculté des Sciences Humaines et Sociales (FASHS)</li>
+                            <li><i class="fas fa-plus-circle"></i>Et 15 autres entités académiques</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="structure-card">
+                    <div class="card-header">Institutions Spécialisées</div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-music"></i>Ensemble Artistique et Culturel des Etudiants (EACE)</li>
+                            <li><i class="fas fa-newspaper"></i>Le Héraut (Journal étudiant)</li>
+                            <li><i class="fas fa-futbol"></i>Ensemble Sportif des Etudiants (ESE)</li>
+                            <li><i class="fas fa-microphone-alt"></i>Radio Univers</li>
+                            <li><i class="fas fa-flask"></i>Comité de Recherches Scientifiques et de Publications (CRSP)</li>
+                            <li><i class="fas fa-home"></i>Comité des Résidents (CR)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="objectives-duties">
+            <div class="objectives">
+                <h3>Nos Objectifs</h3>
+                <ul>
+                    <li>Défendre les droits et intérêts matériels et moraux des étudiants</li>
+                    <li>Militer pour un enseignement supérieur de qualité et accessible à tous</li>
+                    <li>Promouvoir la culture, la littérature, les arts et le sport universitaire</li>
+                    <li>Encourager l'esprit de solidarité, d'entraide et de responsabilité</li>
+                    <li>Œuvrer pour le respect des franchises universitaires</li>
+                    <li>Créer une communauté unie de tous les étudiants béninois</li>
+                    <li>Coopérer avec les organisations étudiantes nationales et internationales</li>
+                    <li>Développer une conscience historique panafricaine chez les étudiants</li>
+                </ul>
+            </div>
+            
+            <div class="duties">
+                <h3>Nos devoirs</h3>
+                <ul>
+                    <li>Connaître et respecter les textes fondamentaux de la FNEB</li>
+                    <li>Respecter la discipline de groupe et d'action des étudiants</li>
+                    <li>Travailler à acquérir une conscience politique fondée sur la démocratie</li>
+                    <li>Cultiver l'amour de la patrie et l'esprit de sacrifice</li>
+                    <li>Respecter les biens publics et les installations universitaires</li>
+                    <li>Servir la communauté avec ses capacités physiques et intellectuelles</li>
+                    <li>Placer l'intérêt général au-dessus des intérêts personnels</li>
+                    <li>Servir la Fédération en toute objectivité, honnêteté et loyauté</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="values-section">
+            <h2 class="section-title">Nos Valeurs Fondamentales</h2>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Unité</h4>
+                    <p>Nous croyons en la force de la communauté étudiante unie, malgré nos diversités.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-scale-balanced"></i>
+                    </div>
+                    <h4>Justice</h4>
+                    <p>Nous luttons pour un traitement équitable et le respect des droits de chaque étudiant.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Action</h4>
+                    <p>Nous transformons nos paroles en actes concrets pour améliorer la condition étudiante.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>Excellence Académique</h4>
+                    <p>Nous promouvons la recherche du savoir et de la connaissance scientifique.</p>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+ 
+ 
+</section>
+
+ 
+
+
+
 
 
   
@@ -365,91 +178,66 @@
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">👥Le Bureau Exécutif National</h6>
+            
+
+
+  
+
+
+    <section class="members-section">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <i class="fas fa-users me-2"></i>Le Bureau Exécutif National
+                    </div>
+                  
+                    <p>Découvrez les membres dévoués qui composent notre équipe dirigeante et travaillent sans relâche pour la communauté étudiante.</p>
+                </div>
                 
-                <h1 class="mb-5">Membres</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                <div class="members-container">
+                    <div class="decoration dec-1"></div>
+                    <div class="decoration dec-2"></div>
+                    
+                    <div class="team-row">
+                        @foreach($members as $member)
+                        <div class="team-card">
+                            <div class="image-container">
+                                <img src="{{ asset('storage/' . ($member->photo ?? 'img/default-avatar.png')) }}" 
+                                    class="team-img" alt="{{ $member->name }}">
+                                <div class="position-badge">{{ $member->position }}</div>
+                                
+                                <div class="social-links">
+                                   
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                   
+                                   
+                                   <a href="tel:{{ $member->phone }}" >
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                   
+                                   
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                   
+                                    
+                                    <a href="mailto:{{ $member->email }}"><i class="fas fa-envelope"></i></a>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="member-info">
+                                <h3>{{ $member->name }}</h3>
+                                <p>{{ $member->role }}</p>
+                                <a href="#" class="contact-btn">Contacter</a>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">[Nom] - Université d'Abomey-Calavi</h5>
-                            <small><strong>Président</strong></small>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-
-            
-            
         </div>
-
+    </section>
+        </div>
     </div>
     <!-- Team End -->
     
@@ -457,7 +245,23 @@
 @endsection
 
 @section('extra-script')
-
+     <script>
+        // Animation pour les cartes au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.team-card');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + (index * 150));
+            });
+        });
+    </script>
 
 @endsection
 

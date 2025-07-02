@@ -19,6 +19,16 @@
                     <label>Nom complet</label>
                     <input type="text" name="name" class="form-control" required>
                 </div>
+
+                <div class="mb-3">
+                    <label>Téléphone</label>
+                    <input type="text" name="phone" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
                 
                 <div class="mb-3">
                     <label>Poste</label>

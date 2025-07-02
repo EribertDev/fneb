@@ -85,11 +85,14 @@
         <!-- Filtres -->
         <div class="row mb-4 g-3">
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    <button class="btn btn-outline-primary rounded-pill">Tous</button>
-                    <button class="btn btn-outline-primary rounded-pill">Conférences</button>
-                    <button class="btn btn-outline-primary rounded-pill">Ateliers</button>
-                    <button class="btn btn-outline-primary rounded-pill">Manifestations</button>
+                    <a  href="{{route('evenements')}}" class="btn btn-outline-primary rounded-pill">Tous</button>
+                    <a  href="?type=conference"  class="btn btn-outline-primary rounded-pill">Conférences</a>
+                    <a href="?type=atelier" class="btn btn-outline-primary rounded-pill">Ateliers</a>
+                    <a href="?type=seminaire" class="btn btn-outline-primary rounded-pill">Seminaires</a>
+                    <a href="?type=autre" class="btn btn-outline-primary rounded-pill">Autre</a>
+
                 </div>
+
             </div>
         </div>
     

@@ -88,23 +88,35 @@
                 </a>
             </li>
         </ul>
+          @if(Auth::check())
 
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="far fa-bell text-fneb-primary"></i>
-                    <span class="badge badge-danger navbar-badge">3</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <span class="dropdown-header">3 Notifications</span>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-users mr-2"></i> 5 nouveaux membres
-                    </a>
+              <div class=" col-md-12 text-md-end ">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
+                                <img src="{{ auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : asset('images/default-avatar.png') }}" 
+                                alt="Avatar de {{ auth()->user()->name }}" 
+                                class="rounded-circle"
+                                style="width: 50px; height: 50px; object-fit: cover;">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profil</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Paramètres</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><i class="fas fa-sign-out-alt me-2"> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a><form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form></i></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </li>
-        </ul>
+            
+                 
+            @else
+                 <div class="auth-links">
+                     <a href="{{ route('login') }}" style="color: #fff;">Login</a>
+                 </div>
+                 
+             @endif 
+      
     </nav>
 
     <!-- Sidebar -->

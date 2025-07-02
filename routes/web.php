@@ -15,7 +15,26 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
+
+
+
+// Mot de passe oublié
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
+     ->name('password.request');
+
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+     ->name('password.email');
+
+// Réinitialisation
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
+     ->name('password.reset');
+
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])
+     ->name('password.update');
 
 
 // Route pour le dashboard admin
@@ -32,9 +51,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // Route A propos
-Route::get('/about',function (){
-    return view('layouts.a-propos');
-})->name('about');
+Route::get('/about',[HomeController::class,'indexAbout'])->name('about');
 
 //ROUTE DON 
 Route::get('/soutient/fneb',function (){
@@ -148,6 +165,12 @@ Route::put('/admin/member/{member}', [MemberController::class, 'update'])->name(
 Route::delete('/admin/member/{member}', [MemberController::class, 'delete'])->name('members.destroy');
 
 
-
+// Protection des routes
+Route::middleware(['auth'])->group(function () {
+    // Profil utilisateur
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
+});
 
 

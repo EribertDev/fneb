@@ -11,6 +11,7 @@
 @section('description', 'Description FNEB')
 @section('extra-style')
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/sondages.css') }}">
 <style>
      :root {
         --fneb-blue: #0055A4;
@@ -464,111 +465,11 @@
     </div>
 </section>
     <!-- Structure Organisationnelle -->
-    <section id="structure" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Architecture Institutionnelle</h2>
-            
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="structure-timeline">
-                        <div class="timeline-item">
-                            <h3>Sections Fédérales</h3>
-                            <ul class="list-unstyled">
-                                <li>• Université d'Abomey-Calavi</li>
-                                <li>• Université Nationale d'Agriculture</li>
-                                <li>• Université de Parakou</li>
-                                <li>• Représentations Internationales (20+ étudiants)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <h3>Unions d'Entités</h3>
-                            <div class="row row-cols-2 row-cols-md-3 g-2">
-                                <div class="col">
-                                    <div class="badge bg-primary">EPAC</div>
-                                </div>
-                                <!-- Ajouter les autres entités -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
 
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-lg">
-                        <div class="card-body">
-                            <h3 class="card-title">Couverture Nationale</h3>
-                            <img src="map-benin.png" alt="Carte du Bénin" class="img-fluid">
-                            <div class="legend mt-3">
-                                <span class="badge bg-primary me-2">Sections Fédérales</span>
-                                <span class="badge bg-success">Institutions Spécialisées</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Institutions Spécialisées -->
-    <section id="institutions" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Piliers Institutionnels</h2>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="institution-card card h-100 text-center">
-                        <div class="card-header bg-primary text-white">
-                            <i class="fas fa-icons fa-3x"></i>
-                        </div>
-                        <div class="card-body">
-                            <h4>BACE</h4>
-                            <p>Ensemble Artistique et Culturel des Étudiants</p>
-                            <small class="text-muted">Club UNESCO agréé</small>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Ajouter autres institutions -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Objectifs & Devoirs -->
-    <section id="objectifs" class="py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Nos Combats</h3>
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <h4 class="accordion-header">
-                                <button class="accordion-button">Éducation pour tous</button>
-                            </h4>
-                            <div class="accordion-body">
-                                <p>Démocratisation de l'accès à l'enseignement supérieur</p>
-                            </div>
-                        </div>
-                        <!-- Ajouter autres objectifs -->
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <h3 class="mb-4">Engagements Membres</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">
-                            <i class="fas fa-check-circle me-2 text-gold"></i>
-                            Respect des biens publics universitaires
-                        </li>
-                        <!-- Ajouter autres devoirs -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+  
 
    
-
-    </div>
 </div>
 <!-- About End -->
 
@@ -577,38 +478,38 @@
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
-                <h6 class="section-title bg-white text-center text-primary px-3">👥Le Bureau Exécutif National</h6>
-                
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">👥 Le Bureau Exécutif National</h6>
                 <h1 class="mb-5">Membres</h1>
             </div>
-           
             <div class="row g-4">
-                @foreach ($members as $member)
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                @foreach($members as $member)
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.1 + $loop->index * 0.2 }}s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{asset('storage/' .$member->photo)}}"   alt=" {{ $member->name }}">
+                            <img 
+                                class="img-fluid" 
+                                src="{{ asset('storage/' . ($member->photo ?? 'img/default-avatar.png')) }}" 
+                                alt="{{ $member->name }}"
+                            >
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                          
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                {{-- Si vous avez des URLs de réseaux sociaux, vous pouvez les remplacer ci‑dessous --}}
+                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">[ {{ $member->name }}  ] </h5>
-                            <small><strong>{{ $member->position }} </strong></small>
+                            <h5 class="mb-0">{{ $member->name }}</h5>
+                            <small><strong>{{ $member->position }}</strong></small>
                         </div>
                     </div>
                 </div>
                 @endforeach
-            
-               
-
             </div>
-
-            
-            
         </div>
-
     </div>
     <!-- Team End -->
 
@@ -628,9 +529,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <small class="text-muted">{{ $actualite->created_at->translatedFormat('d M Y') }}</small>
-                                <small class="text-primary">
-                                    <i class="fas fa-eye me-1"></i>{{ $actualite->views ?? 0 }}
-                                </small>
+                            
                             </div>
                             <h3 class="card-title h5">{{ $actualite->titre }}</h3>
                             <p class="card-text">{{ Str::limit($actualite->subtitre, 100) }}</p>
@@ -646,8 +545,10 @@
                 </div>
                 @endforeach
             </div>
-            
            
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ route('actualites') }}" class="btn btn-primary">Voir toutes les actualités</a>
         </div>
     </section>
     <!-- Actualités End -->    
@@ -723,6 +624,9 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ route('evenements') }}" class="btn btn-primary">Tout les événements</a>
         </div>
     </div>
     
@@ -917,96 +821,91 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('blog') }}" class="btn btn-primary">Voir Tout</a>
+            </div>
         </div>
     </section>
     <!-- BLOG End -->
 
-    <!-- Autre Start -->
+ 
     
     <!-- Liste des sondages -->
 <div class="container mx-auto px-4" style="margin-top: 200px;">
     <h2 class="text-center mb-5">Sondages Étudiants</h2>
-    @forelse($latestPoll as $poll)
-    <div class="bg-white rounded-xl shadow-2xl mb-8 overflow-hidden transition-all duration-300 hover:shadow-lg">
-        <!-- En-tête du sondage -->
-        <div class="p-6 border-b-2 border-blue-100 bg-gradient-to-r from-[#1A3D7C] to-[#4D8EFF]">
-            <h3 class="text-2xl font-bold text-center mb-3">{{ $poll->question }}</h3>
-            <div class="flex items-center mt-2 text-sm text-blue-100">
-                <span class="mr-4">📅 {{ $poll->end_at ? 'Clôture : '.$poll->end_at->translatedFormat('d M Y H:i') : 'Durée illimitée' }}</span>
-                <span>🗳 {{ $poll->votes_count }} participations</span>
-            </div>
-        </div>
-
-        @if(!$poll->hasVoted(request()->cookie('voted_polls')))
-        <!-- Formulaire de vote -->
-        <form method="POST" action="{{ route('polls.vote', $poll) }}" class="p-6">
-            @csrf
-            <div class="space-y-4 mb-6">
-                <div class="row g-3">
-                    @foreach($poll->options as $option)
-                    <div class="col-12 col-md-6">
-                        <div class="card option-card shadow-sm hover:shadow-md transition-all">
-                            <label class="card-body d-flex align-items-center cursor-pointer m-0">
-                                <div class="form-check me-3">
-                                    <input 
-                                        type="radio" 
-                                        name="option_id" 
-                                        value="{{ $option->id }}" 
-                                        class="form-check-input"
-                                        required>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-0 text-[#1A3D7C]">{{ $option->text }}</h5>
-                                </div>
-                            </label>
+   
+             @if(count($latestPoll) > 0)
+                @foreach($latestPoll as $poll)
+                <div class="sondage-card">
+                    <div class="sondage-header">
+                        <h2 class="sondage-title">{{ $poll->question }}</h2>
+                        <div class="sondage-meta">
+                            <div class="sondage-meta-item">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>
+                                    @if($poll->end_at)
+                                        Clôture: {{ $poll->end_at->format('d M Y') }}
+                                    @else
+                                        Durée illimitée
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="sondage-meta-item">
+                                <i class="far fa-user"></i>
+                                <span>{{ $poll->votes_count }} participations</span>
+                            </div>
                         </div>
                     </div>
-                    @endforeach
-                </div>
-            </div>
-            <button type="submit" class="w-full py-3 bg-gradient-to-r from-[#1A3D7C] to-[#4D8EFF] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity btn btn-primary mt-2" style="border-radius: 10px">
-                Valider mon vote 🗳
-            </button>
-        </form>
-        @else
-        <!-- Résultats -->
-        <div class="p-6">
-            <div class="space-y-4">
-                @foreach($poll->options as $option)
-                <div class="relative pt-4">
-                    <div class="flex justify-between mb-1">
-                        <span class="text-[#1A3D7C] font-medium">{{ $option->text }}</span>
-                        <span class="text-[#4D8EFF] font-bold">{{ $option->percentage }}%</span>
-                    </div>
-                    <!-- Barre de progression -->
-                    <div class="progress flex-grow-1" style="height: 40px;">
-                        <div class="progress-bar bg-fneb" 
-                            role="progressbar" 
-                            style="width: {{ $option->percentage }}%" 
-                            aria-valuenow="{{ $option->percentage }}" 
-                            aria-valuemin="0" 
-                            aria-valuemax="100">
-                            <span class="progress-text">{{ $option->percentage }}%</span>
+                    
+                    @if(!$poll->hasVoted(request()->cookie('voted_polls')))
+                    <form method="POST" action="{{ route('polls.vote', $poll) }}" class="sondage-body">
+                        @csrf
+                        <div class="options-grid">
+                            @foreach($poll->options as $option)
+                            <div class="option-card" onclick="selectOption(this, {{ $option->id }})">
+                                <div class="option-radio"></div>
+                                <div class="option-text">{{ $option->text }}</div>
+                                <input type="radio" name="option_id" value="{{ $option->id }}" class="option-radio-input" style="display: none;" required>
+                            </div>
+                            @endforeach
+                        </div>
+                        
+                        <button type="submit" class="vote-button">Valider mon vote</button>
+                    </form>
+                    @else
+                    <div class="sondage-body">
+                        <div class="results-container">
+                            @foreach($poll->options as $option)
+                            <div class="result-item">
+                                <div class="result-header">
+                                    <div class="result-text">{{ $option->text }}</div>
+                                    <div class="result-percentage">{{ $option->percentage }}%</div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar" style="width: {{ $option->percentage }}%">
+                                        <div class="progress-value">{{ $option->percentage }}%</div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            @endforeach
+                            
+                            <div class="thank-you">
+                                <div class="thank-you-icon">✓</div>
+                                <div class="thank-you-text">Merci pour votre participation !</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-right text-sm text-gray-600 mt-1">
-                        {{ $option->votes_count }} votes
-                    </div>
+                    @endif
                 </div>
                 @endforeach
+            @else
+            <div class="empty-polls">
+                <h3>📢 Aucun sondage en cours</h3>
+                <p>Revenez prochainement pour donner votre avis !</p>
             </div>
-            <div class="mt-6 text-center text-[#1A3D7C] font-semibold">
-                ✅ Merci pour votre participation !
-            </div>
-        </div>
-        @endif
-    </div>
-    @empty
-    <div class="text-center py-12">
-        <div class="text-2xl text-[#1A3D7C] mb-4">📢 Aucun sondage en cours</div>
-        <p class="text-[#4D8EFF]">Revenez prochainement pour donner votre avis !</p>
-    </div>
-    @endforelse
+            @endif
+   
 </div>
 </div>
       
@@ -1014,18 +913,9 @@
 @endsection
    
 @section('extra-script')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        new PureCounter({
-            // Configuration personnalisée
-            selector: '.purecounter',
-            duration: 5,
-            delay: 5,
-            once: true,
-            legacy: false
-        });
-    });
-</script>
+
+
+@endse
 
 
 
