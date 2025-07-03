@@ -939,113 +939,36 @@
 
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const events = [
-        {
-            title: 'Réunion ',
-            start: '2025-02-24T10:00:00',
-            end: '2025-03-15T12:00:00',
-            location: 'Salle B203',
-            description: 'Préparation des élections universitaires'
-        },
-        {
-            title: 'Atelier',
-            start: '2025-02-24T14:00:00',
-            end: '2025-03-15T17:00:00',
-            location: 'Bibliothèque centrale',
-            description: 'Avec M. Adébayo, expert en création d\'entreprise'
-        }
-    ];
-
-    // Configuration Calendrier Mensuel
-    const calendarEl = document.getElementById('monthCalendar');
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: false,
-        locale: 'fr',
-        events: events,
-        dateClick: function(info) {
-            updateDailyEvents(info.date);
-        },
-        eventDidMount: function(arg) {
-            arg.el.innerHTML = `
-                <div class="d-flex align-items-center p-1">
-                    <div class="event-badge me-2">${formatTime(arg.event.start)}</div>
-                    <div class="event-title" >${arg.event.title}</div>
-                </div>
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des barres de progression
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
                 
-            `;
-        }
-        
-    });
-
-    // Gestion Navigation
-    document.getElementById('prevMonth').addEventListener('click', () => {
-        calendar.prev();
-        updateMonthHeader();
-    });
-
-    document.getElementById('nextMonth').addEventListener('click', () => {
-        calendar.next();
-        updateMonthHeader();
-    });
-
-    // Mise à jour de l'interface
-    function updateMonthHeader() {
-        const currentDate = calendar.getDate();
-        document.getElementById('currentMonth').textContent = 
-            currentDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
-    }
-
-    function updateDailyEvents(date) {
-        const selectedDate = date.toISOString().split('T')[0];
-        const dailyEvents = events.filter(event => 
-            event.start.startsWith(selectedDate)
-        );
-
-        const eventsHtml = dailyEvents.map(event => `
-            <div class="list-group-item">
-                <div class="d-flex justify-content-between align-items-start">
-                    <div>
-                        <h5 class="mb-1">${event.title}</h5>
-                        <small class="text-muted">${formatTime(event.start)} - ${formatTime(event.end)}</small>
-                        <div class="mt-2">📍 ${event.location}</div>
-                    </div>
-                    <button class="btn btn-sm btn-outline-primary">+ Détails</button>
-                </div>
-                ${event.description ? `<p class="mt-2 mb-0">${event.description}</p>` : ''}
-            </div>
-        `).join('');
-if (dailyEvents.length === 0) {
-            document.getElementById('dailyEvents').innerHTML = `
-                <div class="text-center text-muted">Aucun événement prévu pour le ${date.toLocaleDateString('fr-FR')}</div>
-            `;
-        } else {
-            document.getElementById('dailyEvents').innerHTML = eventsHtml;
-        }
-        document.getElementById('selectedDate').textContent = 
-            'Événements du ' + date.toLocaleDateString('fr-FR', { 
-                weekday: 'long', 
-                day: 'numeric', 
-                month: 'long' 
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
             });
-    }
-
-    function formatTime(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleTimeString('fr-FR', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
+            
+            // Fonction de sélection d'option
+            window.selectOption = function(card, optionId) {
+                // Retire la sélection de toutes les options
+                const allCards = card.parentElement.querySelectorAll('.option-card');
+                allCards.forEach(c => c.classList.remove('selected'));
+                
+                // Ajoute la sélection à l'option cliquée
+                card.classList.add('selected');
+                
+                // Coche le radio bouton correspondant
+                const radioInput = card.querySelector('.option-radio-input');
+                if (radioInput) {
+                    radioInput.checked = true;
+                }
+            };
         });
-    }
-
-    // Initialisation
-    calendar.render();
-    updateMonthHeader();
-    updateDailyEvents(new Date());
-});
-</script>
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js" defer></script>
 @endsection
