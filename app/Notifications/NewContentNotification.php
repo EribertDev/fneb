@@ -49,7 +49,7 @@ class NewContentNotification extends Notification
                     ->line($this->excerpt)
                     ->action('Lire la suite', $this->url)
                     ->line('Pour ne plus recevoir ces notifications :');
-                    ->action('Se désabonner', route('newsletter.unsubscribe', $subscriber->token));
+                   // ->action('Se désabonner', route('newsletter.unsubscribe', $subscriber->token));
     }
 
     /**

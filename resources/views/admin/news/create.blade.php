@@ -80,7 +80,10 @@
 @section('extra-script')
 <script src="https://cdn.tiny.cloud/1/t40a2vy1t3kvif8uykya569m0q32gcscadunfjc11yysp33x/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+
+ 
+
+
     tinymce.init({
         selector: '#contenu',
         plugins: 'link lists image code',
@@ -88,6 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         height: 400,
         content_style: 'body { font-family: Arial, sans-serif; font-size:16px }'
     });
-});
+
 </script>
 @endsection
