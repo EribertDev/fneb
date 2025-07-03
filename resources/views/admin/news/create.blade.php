@@ -80,17 +80,20 @@
 @section('extra-script')
 <script src="https://cdn.tiny.cloud/1/t40a2vy1t3kvif8uykya569m0q32gcscadunfjc11yysp33x/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-
- 
-
-
+document.addEventListener('DOMContentLoaded', function() {
     tinymce.init({
-        selector: '#contenu',
+        selector: '#contenu',  // Utilise l'ID directement
         plugins: 'link lists image code',
         toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | bullist numlist | link image | code',
         height: 400,
-        content_style: 'body { font-family: Arial, sans-serif; font-size:16px }'
+        content_style: 'body { font-family: Arial, sans-serif; font-size:16px }',
+        setup: function(editor) {
+            // Pour donner le focus programmatiquement si nécessaire
+            editor.on('init', function() {
+                editor.focus();
+            });
+        }
     });
-
+});
 </script>
 @endsection

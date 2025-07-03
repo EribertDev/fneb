@@ -932,20 +932,6 @@
    
 @section('extra-script')
 
-
-@endse
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
     // Initialisation de Masonry
     var grid = document.querySelector('.row');
