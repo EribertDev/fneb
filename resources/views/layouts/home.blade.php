@@ -12,6 +12,8 @@
 @section('extra-style')
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/sondages.css') }}">
+<link rel="stylesheet" href="{{asset('css/about.css')}}">
+
 <style>
      :root {
         --fneb-blue: #0055A4;
@@ -360,7 +362,7 @@
 @endsection
 @section('content')
     <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
+    <div class="container-fluid ">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
                 <img class="img-fluid" src="img/home-caroussel1.jpg" alt=""  style="max-height: 850px;">
@@ -414,9 +416,7 @@
     </div>
     <!-- Carousel End -->
 
- <!-- About Start -->
- <div class="container-xxl py-5">
-    <div class="container">
+ 
        <!-- Valeurs FNEB -->
 <section class="values-section py-5">
     <div class="container">
@@ -476,41 +476,59 @@
 
 
     <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">👥 Le Bureau Exécutif National</h6>
-                <h1 class="mb-5">Membres</h1>
-            </div>
-            <div class="row g-4">
-                @foreach($members as $member)
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="{{ 0.1 + $loop->index * 0.2 }}s">
-                    <div class="team-item bg-light">
-                        <div class="overflow-hidden">
-                            <img 
-                                class="img-fluid" 
-                                src="{{ asset('storage/' . ($member->photo ?? 'img/default-avatar.png')) }}" 
-                                alt="{{ $member->name }}"
-                            >
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                {{-- Si vous avez des URLs de réseaux sociaux, vous pouvez les remplacer ci‑dessous --}}
-                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href="#"><i class="fab fa-instagram"></i></a>
+    <section class="members-section">
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <i class="fas fa-users me-2"></i>Le Bureau Exécutif National
+                    </div>
+                  
+                    <p>Découvrez les membres dévoués qui composent notre équipe dirigeante et travaillent sans relâche pour la communauté étudiante.</p>
+                </div>
+                
+                <div class="members-container">
+                    <div class="decoration dec-1"></div>
+                    <div class="decoration dec-2"></div>
+                    
+                    <div class="team-row">
+                        @foreach($members as $member)
+                        <div class="team-card">
+                            <div class="image-container">
+                                <img src="{{ asset('storage/' . ($member->photo ?? 'img/default-avatar.png')) }}" 
+                                    class="team-img" alt="{{ $member->name }}">
+                                <div class="position-badge">{{ $member->position }}</div>
+                                
+                                <div class="social-links">
+                                   
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                   
+                                   
+                                   <a href="tel:{{ $member->phone }}" >
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                   
+                                   
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                   
+                                    
+                                    <a href="mailto:{{ $member->email }}"><i class="fas fa-envelope"></i></a>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="member-info">
+                                <h3>{{ $member->name }}</h3>
+                                <p>{{ $member->role }}</p>
+                                <a href="#" class="contact-btn">Contacter</a>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">{{ $member->name }}</h5>
-                            <small><strong>{{ $member->position }}</strong></small>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
-    </div>
+    </section>
     <!-- Team End -->
 
 
