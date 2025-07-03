@@ -97,8 +97,8 @@ class EvenementController extends Controller
         }
         
         $evenement->delete();
-        
-        return redirect()->route('admin.events.index')
+                return redirect()->back()
+
                          ->with('success', 'Événement supprimé avec succès');
     }
 
