@@ -162,7 +162,7 @@ Route::get('/admin/member/create', [MemberController::class, 'create'])->name('m
 Route::post('/admin/member/store', [MemberController::class, 'store'])->name('members.store');
 Route::get('/admin/member/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
 Route::put('/admin/member/{member}', [MemberController::class, 'update'])->name('members.update');
-Route::delete('/admin/member/{member}', [MemberController::class, 'delete'])->name('members.destroy');
+Route::delete('/admin/member/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 
 
 // Protection des routes

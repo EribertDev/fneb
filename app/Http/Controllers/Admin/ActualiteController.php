@@ -10,6 +10,7 @@ use App\Models\Newsletter;
 use Illuminate\Support\Str;
 use App\Notifications\NewContentNotification;
 
+
 use HTMLPurifier;
 use HTMLPurifier_Config;
 

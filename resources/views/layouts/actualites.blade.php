@@ -82,9 +82,8 @@
             @foreach($news as $actualite)
             <div class="col-md-6 col-lg-4">
                 <article class="news-card card h-100 shadow-lg border-0">
-                    
-                    <img src="{{ asset('storage/' .$actualite->image) }}"  class="card-img-top" alt="{{ $actualite->title }}"
-                    style="height: 250px; object-fit: cover;">
+                 <img  src="{{ asset('storage/' .  $actualite->image) }}" class="card-img-top" alt="{{ $actualite->title }}"
+                 style="height: 250px; object-fit: cover;">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <small class="text-muted">{{ $actualite->created_at->translatedFormat('d M Y') }}</small>
