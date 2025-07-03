@@ -25,7 +25,7 @@ class ActualiteController extends Controller
 
     public function create()
     {
-        return view('admin.news.create');
+        return view('admin.news.edit ');
     }
 
     public function store(Request $request)

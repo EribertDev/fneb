@@ -86,7 +86,7 @@ class EvenementController extends Controller
 
         $evenement->update($validated);
 
-        return redirect()->route('admin.evenements.index')
+        return redirect()->back()
                          ->with('success', 'Événement mis à jour avec succès');
     }
 
