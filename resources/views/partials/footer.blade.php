@@ -16,7 +16,7 @@
                 <h4 class="text-white mb-3">Nous Contacter</h4>
                 <p class="mb-2">
                     <i class="fa fa-map-marker-alt me-3"></i>
-                    Cotonou, Bénin - Siège National
+                   UAC  Abomey-Calavi, Bénin - Siège National
                 </p>
                 <p class="mb-2">
                     <i class="fa fa-phone-alt me-3"></i>
@@ -24,7 +24,7 @@
                 </p>
                 <p class="mb-2">
                     <i class="fa fa-envelope me-3"></i>
-                    contact@fnebbenin.org
+                   sgbef2024@gmail.com
                 </p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href="#">
