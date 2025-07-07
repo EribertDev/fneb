@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function index() {
         $latestActualites = Actualite::where('status', 'published')->latest()->take(3)->get();
-        $latestEvenements = Evenement::where('statut', 'a_venir')->latest()->take(3)->get();
+        $latestEvenements = Evenement::latest()->take(3)->get();
         $latestPosts = Post::where('status', 'published')->latest()->take(3)->get();
         $popularPosts = Post::withCount('comments')->orderByDesc('comments_count')->limit(5)->get();
         $latestPoll = Poll::where('status', 'active')->latest()->take(2)->get();
