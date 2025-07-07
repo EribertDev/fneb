@@ -185,12 +185,16 @@
                     <div class="card-body">
                         <h3 class="h5 fw-bold mb-3">Localisation</h3>
                         <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.440552103926!2d2.422042415333281!3d6.365359595387966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x102355584d1c5d9b%3A0x4a4d4c3177e1918b!2sUniversit%C3%A9%20d&#39;Abomey-Calavi!5e0!3m2!1sfr!2sbj!4v1648731335098!5m2!1sfr!2sbj" 
-                                style="border:0;" 
-                                allowfullscreen>
+                       <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.440552103926!2d2.422042415333281!3d6.365359595387966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x102355584d1c5d9b%3A0x4a4d4c3177e1918b!2sUniversit%C3%A9%20d&#39;Abomey-Calavi!5e0!3m2!1sfr!2sbj!4v1648731335098!5m2!1sfr!2sbj" 
+                            width="600" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
-                        </div>
+                                                    </div>
                     </div>
                 </section>
 
