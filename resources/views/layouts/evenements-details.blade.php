@@ -21,10 +21,24 @@
         z-index: 1;
     }
     
-    .hero-image {
+   .hero-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
+        image-rendering: -webkit-optimize-contrast; /* Améliore la qualité sur WebKit */
+        image-rendering: crisp-edges; /* Rend l'image plus nette */
+        will-change: transform; /* Optimisation des performances */
+    }
+
+    .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+        z-index: 1;
     }
     
     .hero-content {
@@ -161,21 +175,7 @@
                     </div>
                 </section>
 
-                <!-- Galerie -->
-                <section class="mb-5">
-                    <h2 class="h3 fw-bold mb-4">Galerie</h2>
-                    <div class="row g-3 gallery-grid">
-                        @for($i = 0; $i < 4; $i++)
-                        <div class="col-6 col-md-3">
-                            <div class="gallery-item ratio ratio-1x1">
-                                <img src="https://picsum.photos/400?random={{ $i }}" 
-                                     class="rounded-3" 
-                                     alt="Gallery image {{ $i }}">
-                            </div>
-                        </div>
-                        @endfor
-                    </div>
-                </section>
+              
             </div>
 
             <!-- Colonne Droite -->
