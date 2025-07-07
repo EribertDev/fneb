@@ -428,7 +428,7 @@
                         <i class="fas fa-users fa-3x"></i>
                     </div>
                     <h3>Unité</h3>
-                    <p>23 universités fédérées<br>15 000 étudiants solidaires</p>
+                    <p>23+ universités fédérées<br>15 000+ étudiants solidaires</p>
                     <div class="value-divider"></div>
                     <small>"Seul on va vite, ensemble on va loin"</small>
                 </div>
@@ -441,7 +441,7 @@
                         <i class="fas fa-balance-scale fa-3x"></i>
                     </div>
                     <h3>Justice</h3>
-                    <p>12 commissions thématiques<br>108 résolutions annuelles</p>
+                    <p>12+ commissions thématiques<br>108+ résolutions annuelles</p>
                     <div class="value-divider"></div>
                     <small>"L'équité comme fondement"</small>
                 </div>
@@ -454,7 +454,7 @@
                         <i class="fas fa-fist-raised fa-3x"></i>
                     </div>
                     <h3>Action</h3>
-                    <p>45 événements annuels<br>92% de satisfaction étudiante</p>
+                    <p>45+ événements annuels<br>92% de satisfaction étudiante</p>
                     <div class="value-divider"></div>
                     <small>"La praxis au cœur du changement"</small>
                 </div>
